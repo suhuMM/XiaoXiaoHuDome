@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\android\lianxi\XiaoXiaoHuDome\PushSDK\assets"/><source path="F:\android\lianxi\XiaoXiaoHuDome\PushSDK\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="F:\android\lianxi\XiaoXiaoHuDome\PushSDK\build-types\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\AS\kotlin\XiaoXiaoHuDome\PushSDK\assets"/><source path="E:\AS\kotlin\XiaoXiaoHuDome\PushSDK\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\AS\kotlin\XiaoXiaoHuDome\PushSDK\build-types\release\assets"/></dataSet></merger>

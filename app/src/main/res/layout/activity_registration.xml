@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/title_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="@string/phone"
+            style="@style/Text"
+            />
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:hint="@string/input_phone"
+            android:inputType="phone"
+            android:maxLength="11"
+            style="@style/EditText"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            style="@style/Text"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="@string/code" />
+
+        <EditText
+            android:id="@+id/code"
+            style="@style/EditText"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:hint="@string/hint_code"
+            android:inputType="phone"
+            android:maxLength="6" />
+
+        <Button
+            android:id="@+id/request"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            style="@style/Button"
+            android:text="获取验证码"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            style="@style/Text"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="@string/pass_word" />
+        <EditText
+            android:id="@+id/password_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            style="@style/EditText"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="@string/pass_word"
+            style="@style/Text"
+            />
+        <EditText
+            android:id="@+id/password_again"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:hint="@string/password_again"
+            android:inputType="textPassword"
+            style="@style/EditText"
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/registration"
+        android:text="@string/registration"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        style="@style/Button"
+        />
+</LinearLayout>

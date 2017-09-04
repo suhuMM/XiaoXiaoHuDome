@@ -13,8 +13,6 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
-
     <application
         android:name=".application.SoftwareApp"
         android:allowBackup="true"
@@ -24,42 +22,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <!--短信验证-->
+        <!-- 短信验证 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
-        <meta-data android:name="Mob-AppKey" android:value="20a8ee4f731de"/>
-        <meta-data android:name="Mob-AppSecret" android:value="ab236fd23e610fe078dcc1fb136c0adf"/>
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="20a8ee4f731de" />
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="ab236fd23e610fe078dcc1fb136c0adf" />
 
-        <!--有盟统计-->
-        <meta-data android:name="UMENG_APPKEY" android:value="59aa42c8310c935089000cd8" />
-        <meta-data android:name="UMENG_CHANNEL" android:value="Wandoujia" />
-
-        <!--有盟推送-->
+        <!-- 有盟统计 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="59aa42c8310c935089000cd8">
-        </meta-data>
+            android:value="59aa42c8310c935089000cd8" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Wandoujia" />
+
+        <!-- 有盟推送 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59aa42c8310c935089000cd8"></meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="7b21cb8429f5fb676dd74d01114fd1b1">
-        </meta-data>
+            android:value="7b21cb8429f5fb676dd74d01114fd1b1"></meta-data>
 
-
-        <!--项目原生页面-->
-        <activity android:name=".activity.MainActivity">
+        <!-- 项目原生页面 -->
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
+        <activity android:name=".activity.RegistrationActivity"></activity>
     </application>
 
 </manifest>

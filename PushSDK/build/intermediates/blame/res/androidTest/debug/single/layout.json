@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\AS\\kotlin\\XiaoXiaoHuDome\\PushSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\upush_notification.xml",
+        "source": "E:\\AS\\kotlin\\XiaoXiaoHuDome\\PushSDK\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
+    },
+    {
         "merged": "F:\\android\\lianxi\\XiaoXiaoHuDome\\PushSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\upush_notification.xml",
         "source": "F:\\android\\lianxi\\XiaoXiaoHuDome\\PushSDK\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
     }

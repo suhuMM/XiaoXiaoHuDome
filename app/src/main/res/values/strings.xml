@@ -5,4 +5,8 @@
     <string name="pass_word">密    码</string>
     <string name="hint_password">请输入密码</string>
     <string name="login">登录</string>
+    <string name="registration">注册</string>
+    <string name="code">验证码</string>
+    <string name="hint_code">输入验证码</string>
+    <string name="password_again">再次输入密码</string>
 </resources>
