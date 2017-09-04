@@ -47,10 +47,10 @@
         <!-- 有盟推送 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="59aa42c8310c935089000cd8"></meta-data>
+            android:value="59aa42c8310c935089000cd8" />
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="7b21cb8429f5fb676dd74d01114fd1b1"></meta-data>
+            android:value="7b21cb8429f5fb676dd74d01114fd1b1" />
 
         <!-- 项目原生页面 -->
         <activity android:name=".activity.LoginActivity">
@@ -60,7 +60,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegistrationActivity"></activity>
+        <activity android:name=".activity.RegistrationActivity" />
+        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseActivity;
 import com.suhu.android.utils.AccountValidatorUtil;
+import com.suhu.android.utils.Config;
+import com.suhu.android.utils.MD5Tools;
+import com.suhu.android.utils.SharedPreferencesUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -118,13 +121,18 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login() {
-        phoneS = phone.getText().toString();
-        passwordS = password.getText().toString();
+        phoneS = phone.getText().toString().trim();
+        passwordS = password.getText().toString().trim();
         if (!AccountValidatorUtil.isMobile(phoneS)) {
             Toast.makeText(this, "请输正确的入手机号", Toast.LENGTH_LONG).show();
             return;
         }
-
+        if ( SharedPreferencesUtils.getLoginMessage(this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(passwordS))){
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        }else {
+            Toast.makeText(this, "用户名或者密码错误", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
