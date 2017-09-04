@@ -40,4 +40,6 @@ dependencies {
     //sms
     compile name:'SMSSDK-3.0.0',ext:'aar'
     compile name:'SMSSDKGUI-3.0.0',ext:'aar'
+
+    compile 'com.hjm:BottomTabBar:1.1.1'
 }
