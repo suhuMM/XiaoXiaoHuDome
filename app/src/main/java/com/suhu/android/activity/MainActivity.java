@@ -8,6 +8,7 @@ import android.util.Log;
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.suhu.android.R;
 import com.suhu.android.fragment.FragmentA;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +23,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setBottomTabBar();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+
+    private void setBottomTabBar() {
         bottomTabBar.init(getSupportFragmentManager())
                 .setImgSize(90, 90)
                 .setFontSize(12)
@@ -30,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 .addTabItem("信息", R.drawable.ic_error_black_24dp, FragmentA.class)
                 .addTabItem("云", R.drawable.ic_cloud_black_24dp,   FragmentA.class)
                 .addTabItem("我",  R.drawable.ic_person_black_24dp, FragmentA.class)
-           //     .setTabBarBackgroundResource(R.mipmap.ic_launcher)
                 .isShowDivider(false)
                 .setOnTabChangeListener(new BottomTabBar.OnTabChangeListener() {
                     @Override
@@ -38,6 +56,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("TGA", "位置：" + position + "      选项卡：" + name);
                     }
                 });
-
     }
+
 }
