@@ -16,6 +16,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources false//去掉不用资源
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,12 +35,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    //注解
-    compile 'com.jakewharton:butterknife:8.5.1'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
     //sms
-    compile name:'SMSSDK-3.0.0',ext:'aar'
-    compile name:'SMSSDKGUI-3.0.0',ext:'aar'
+    compile name: 'SMSSDK-3.0.0', ext: 'aar'
+    compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
     //底部导航栏
     compile 'com.hjm:BottomTabBar:1.1.1'
     //工具类
@@ -47,4 +46,7 @@ dependencies {
     //6.0权限
     apt 'com.zhy:mpermission-compiler:1.0.0'
     compile 'com.zhy:mpermission-api:1.0.0'
+    //注解
+    compile 'com.jakewharton:butterknife:8.8.1'
+    compile 'com.jakewharton:butterknife-compiler:8.8.1'
 }

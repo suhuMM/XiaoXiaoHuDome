@@ -6,7 +6,9 @@ import android.os.Bundle;
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseActivity;
-import com.suhu.android.fragment.FragmentA;
+import com.suhu.android.fragment.FragmentInformation;
+import com.suhu.android.fragment.FragmentPerson;
+import com.suhu.android.fragment.FragmentCloud;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,9 +33,9 @@ public class MainActivity extends BaseActivity {
                 .setFontSize(12)
                 .setTabPadding(10, 3, 10)
                 .setChangeColor(Color.RED, Color.BLACK)
-                .addTabItem("信息", R.drawable.ic_error_black_24dp, FragmentA.class)
-                .addTabItem("云", R.drawable.ic_cloud_black_24dp,   FragmentA.class)
-                .addTabItem("我",  R.drawable.ic_person_black_24dp, FragmentA.class)
+                .addTabItem("信息", R.drawable.ic_error_black_24dp, FragmentInformation.class)
+                .addTabItem("云", R.drawable.ic_cloud_black_24dp,   FragmentCloud.class)
+                .addTabItem("我",  R.drawable.ic_person_black_24dp, FragmentPerson.class)
                 .isShowDivider(false)
                 .setOnTabChangeListener(new BottomTabBar.OnTabChangeListener() {
                     @Override

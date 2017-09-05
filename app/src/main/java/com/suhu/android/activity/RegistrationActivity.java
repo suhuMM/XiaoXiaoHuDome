@@ -59,10 +59,15 @@ public class RegistrationActivity extends BaseTitleActivity {
         public void afterEvent(int event, int result, Object data) {
             if (result ==SMSSDK.RESULT_COMPLETE){
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
-                    Toast.makeText(RegistrationActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
-                    SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
-                    startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
-                    finish();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegistrationActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
+                            SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
+                            startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+                            finish();
+                        }
+                    });
                 }else if(event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
                     //获取验证码成功
                     runOnUiThread(new Runnable() {

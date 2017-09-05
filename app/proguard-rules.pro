@@ -56,3 +56,25 @@
 -keep class com.zhy.m.** {*;}
 -keep interface com.zhy.m.** { *; }
 -keep class **$$PermissionProxy { *; }
+
+#Butter Knife的代码混淆
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+
+#自定义混淆
+-keepclassmembers class * {
+   public static boolean isMobile();
+   public final static String MD5();
+   public static void createSharePreferences();
+   public static boolean getLoginMessage();
+
+}
