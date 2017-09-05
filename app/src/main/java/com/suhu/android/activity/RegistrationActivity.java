@@ -1,8 +1,10 @@
 package com.suhu.android.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,11 +16,14 @@ import android.widget.Toast;
 
 import com.mob.MobSDK;
 import com.suhu.android.R;
-import com.suhu.android.base.BaseActivity;
+import com.suhu.android.base.BaseTitleActivity;
 import com.suhu.android.utils.AccountValidatorUtil;
 import com.suhu.android.utils.Config;
 import com.suhu.android.utils.MD5Tools;
 import com.suhu.android.utils.SharedPreferencesUtils;
+import com.zhy.m.permission.MPermissions;
+import com.zhy.m.permission.PermissionDenied;
+import com.zhy.m.permission.PermissionGrant;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +34,8 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
 
-public class RegistrationActivity extends BaseActivity {
+public class RegistrationActivity extends BaseTitleActivity {
+    private static final int REQUEST_PERMISSION_CODE = 1;
 
     @BindView(R.id.actionbar)
     RelativeLayout actionbar;
@@ -47,6 +53,51 @@ public class RegistrationActivity extends BaseActivity {
     Button registration;
 
     private String phoneS,codeS,Password1,password2;
+
+    private EventHandler handler = new EventHandler(){
+        @Override
+        public void afterEvent(int event, int result, Object data) {
+            if (result ==SMSSDK.RESULT_COMPLETE){
+                if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
+                    Toast.makeText(RegistrationActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
+                    SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
+                    startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+                    finish();
+                }else if(event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                    //获取验证码成功
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegistrationActivity.this,"验证码已发送",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }else{
+                ((Throwable)data).printStackTrace();
+                Throwable throwable = (Throwable) data;
+                try {
+                    JSONObject obj = new JSONObject(throwable.getMessage());
+                    final String des = obj.optString("detail");
+                    if (!TextUtils.isEmpty(des)){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (des.equals("invalid validation code")){
+                                    Toast.makeText(RegistrationActivity.this,"验证码无效",Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(RegistrationActivity.this,"手机号已注册",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    };
+
 
     @Override
     public int showContView() {
@@ -174,47 +225,32 @@ public class RegistrationActivity extends BaseActivity {
     }
 
     private void sendSMS() {
+        MPermissions.requestPermissions(this,REQUEST_PERMISSION_CODE,
+                Manifest.permission.READ_SMS,
+                Manifest.permission.RECEIVE_SMS,
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.READ_PHONE_STATE
+                );
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        MPermissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @PermissionGrant(REQUEST_PERMISSION_CODE)
+    public void requestPermissionSuccess(){
         phoneS = phone.getText().toString();
         SMSSDK.getVerificationCode("86",phoneS);
     }
 
-    EventHandler handler = new EventHandler(){
-        @Override
-        public void afterEvent(int event, int result, Object data) {
-           if (result ==SMSSDK.RESULT_COMPLETE){
-               if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
-                   Toast.makeText(RegistrationActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
-                   SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
-                   startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
-                   finish();
-               }else if(event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
-                   //获取验证码成功
-                   runOnUiThread(new Runnable() {
-                       @Override
-                       public void run() {
-                           Toast.makeText(RegistrationActivity.this,"验证码已发送",Toast.LENGTH_SHORT).show();
-                       }
-                   });
-               }
-           }else{
-               ((Throwable)data).printStackTrace();
-               Throwable throwable = (Throwable) data;
-               try {
-                   JSONObject obj = new JSONObject(throwable.getMessage());
-                   final String des = obj.optString("detail");
-                   if (!TextUtils.isEmpty(des)){
-                       runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               Toast.makeText(RegistrationActivity.this,"提交错误信息",Toast.LENGTH_SHORT).show();
-                           }
-                       });
-                   }
-               } catch (JSONException e) {
-                   e.printStackTrace();
-               }
+    @PermissionDenied(REQUEST_PERMISSION_CODE)
+    public void requestPermissionFailed(){
+        Toast.makeText(this, "DENY ACCESS SDCARD!", Toast.LENGTH_SHORT).show();
+    }
 
-           }
-        }
-    };
+
 }

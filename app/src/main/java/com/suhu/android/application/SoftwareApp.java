@@ -2,6 +2,7 @@ package com.suhu.android.application;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
@@ -15,6 +16,7 @@ public class SoftwareApp extends Application{
     public void onCreate() {
         super.onCreate();
 
+        Utils.init(this);
 
         PushAgent mPushAgent = PushAgent.getInstance(this);//注册推送服务，每次调用register方法都会回调该接口
         mPushAgent.register(new IUmengRegisterCallback() {
