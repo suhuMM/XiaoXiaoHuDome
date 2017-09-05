@@ -39,7 +39,6 @@ public class SharedPreferencesUtils {
     */
     public static boolean getLoginMessage(Context context, String tableName, String phone ,String password){
         SharedPreferences sharedPreferences = context.getSharedPreferences(tableName, Context.MODE_PRIVATE);
-        ;
         if (sharedPreferences.getString(Config.PHONE,"null").equals(phone)
                 &&
                 sharedPreferences.getString(Config.PASSWORD,"null").equals(password)

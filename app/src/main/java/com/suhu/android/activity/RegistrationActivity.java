@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.mob.MobSDK;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseActivity;
 import com.suhu.android.utils.AccountValidatorUtil;
@@ -19,8 +20,13 @@ import com.suhu.android.utils.Config;
 import com.suhu.android.utils.MD5Tools;
 import com.suhu.android.utils.SharedPreferencesUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 
 
 public class RegistrationActivity extends BaseActivity {
@@ -54,9 +60,16 @@ public class RegistrationActivity extends BaseActivity {
 
     @Override
     public void setCreateView(Bundle savedInstanceState) {
+        MobSDK.init(this, "20a8ee4f731de", "ab236fd23e610fe078dcc1fb136c0adf");
+        SMSSDK.registerEventHandler(handler);
         setListener();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SMSSDK.unregisterEventHandler(handler);
+    }
 
     @OnClick({R.id.request, R.id.registration})
     public void onViewClicked(View view) {
@@ -64,7 +77,7 @@ public class RegistrationActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.request:
                 changeState();
-                //sendSMS();
+                sendSMS();
                 break;
             case R.id.registration:
                 registration();
@@ -102,9 +115,8 @@ public class RegistrationActivity extends BaseActivity {
             Toast.makeText(this,"两次密码不一致",Toast.LENGTH_SHORT).show();
             return;
         }
-        SharedPreferencesUtils.createSharePreferences(this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
-        startActivity(new Intent(this,MainActivity.class));
-        finish();
+        SMSSDK.submitVerificationCode("86",phoneS,codeS);
+
     }
 
 
@@ -160,7 +172,49 @@ public class RegistrationActivity extends BaseActivity {
             }
         }.start();
     }
+
     private void sendSMS() {
+        phoneS = phone.getText().toString();
+        SMSSDK.getVerificationCode("86",phoneS);
     }
 
+    EventHandler handler = new EventHandler(){
+        @Override
+        public void afterEvent(int event, int result, Object data) {
+           if (result ==SMSSDK.RESULT_COMPLETE){
+               if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
+                   Toast.makeText(RegistrationActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
+                   SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
+                   startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+                   finish();
+               }else if(event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                   //获取验证码成功
+                   runOnUiThread(new Runnable() {
+                       @Override
+                       public void run() {
+                           Toast.makeText(RegistrationActivity.this,"验证码已发送",Toast.LENGTH_SHORT).show();
+                       }
+                   });
+               }
+           }else{
+               ((Throwable)data).printStackTrace();
+               Throwable throwable = (Throwable) data;
+               try {
+                   JSONObject obj = new JSONObject(throwable.getMessage());
+                   final String des = obj.optString("detail");
+                   if (!TextUtils.isEmpty(des)){
+                       runOnUiThread(new Runnable() {
+                           @Override
+                           public void run() {
+                               Toast.makeText(RegistrationActivity.this,"提交错误信息",Toast.LENGTH_SHORT).show();
+                           }
+                       });
+                   }
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+
+           }
+        }
+    };
 }

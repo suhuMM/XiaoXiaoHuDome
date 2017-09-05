@@ -10,8 +10,7 @@ import java.security.MessageDigest;
  * MD5加密工具类
  * <功能详细描述>
  *
- * @author chenlujun
- * @version [版本号, 2014年10月1日]
+ * @author suhu
  * @see [相关类/方法]
  * @since [产品/模块版本]
  */
