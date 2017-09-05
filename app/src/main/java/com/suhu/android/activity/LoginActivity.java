@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseActivity;
+import com.suhu.android.base.BaseTitleActivity;
 import com.suhu.android.utils.AccountValidatorUtil;
 import com.suhu.android.utils.Config;
 import com.suhu.android.utils.MD5Tools;
@@ -22,7 +22,7 @@ import com.suhu.android.utils.SharedPreferencesUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseTitleActivity {
 
     @BindView(R.id.phone)
     EditText phone;
