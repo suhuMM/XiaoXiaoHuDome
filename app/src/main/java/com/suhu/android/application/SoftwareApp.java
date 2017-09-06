@@ -16,10 +16,11 @@ import com.umeng.socialize.UMShareAPI;
 public class SoftwareApp extends Application{
     {
         //ok
-        PlatformConfig.setWeixin("wx79b3c663c76916d8", " 7b3e6ab24e28d00a340d2e947850f412");
+        PlatformConfig.setWeixin("wx79b3c663c76916d8", "c12e4143f1715f9d243fd0940a11edd8");
         PlatformConfig.setAlipay("alipay");
-        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
-        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+        PlatformConfig.setQQZone("100424468", "7394704798a158208a74ab60104f0ba");
+
+        PlatformConfig.setSinaWeibo("3561365327", "2bca4073acc3a5f602e6e699079679cd","https://www.baidu.com/");
     }
 
     @Override

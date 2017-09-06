@@ -85,7 +85,7 @@
 
         <!--支付宝-->
         <activity
-            android:name="com.suhu.android.wxapi.ShareEntryActivity"
+            android:name="com.suhu.android.apshare.ShareEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -108,6 +108,14 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+        <!--微信-->
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
 
 
         <!-- 项目原生页面 -->

@@ -1,4 +1,4 @@
-package com.suhu.android.wxapi;
+package com.suhu.android.apshare;
 
 import com.umeng.socialize.media.ShareCallbackActivity;
 
