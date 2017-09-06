@@ -13,13 +13,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources false//去掉不用资源
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
 }
 repositories {
     flatDir {
@@ -49,4 +52,5 @@ dependencies {
     //注解
     compile 'com.jakewharton:butterknife:8.8.1'
     compile 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }

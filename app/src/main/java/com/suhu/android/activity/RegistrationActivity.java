@@ -54,6 +54,21 @@ public class RegistrationActivity extends BaseTitleActivity {
 
     private String phoneS,codeS,Password1,password2;
 
+    private CountDownTimer timer = new CountDownTimer(60000,1000){
+        @Override
+        public void onTick(long millisUntilFinished) {
+            request.setText(millisUntilFinished/1000+"秒");
+            request.setClickable(false);
+            request.setPressed(true);
+        }
+        @Override
+        public void onFinish() {
+            request.setText("再次获取");
+            request.setClickable(true);
+            request.setPressed(false);
+        }
+    };
+
     private EventHandler handler = new EventHandler(){
         @Override
         public void afterEvent(int event, int result, Object data) {
@@ -125,6 +140,7 @@ public class RegistrationActivity extends BaseTitleActivity {
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(handler);
+        timer.cancel();
     }
 
     @OnClick({R.id.request, R.id.registration})
@@ -213,20 +229,7 @@ public class RegistrationActivity extends BaseTitleActivity {
     }
 
     private void changeState() {
-        new CountDownTimer(6000,1000){
-            @Override
-            public void onTick(long millisUntilFinished) {
-                request.setText(millisUntilFinished/1000+"秒");
-                request.setClickable(false);
-                request.setPressed(true);
-            }
-            @Override
-            public void onFinish() {
-                request.setText("再次获取");
-                request.setClickable(true);
-                request.setPressed(false);
-            }
-        }.start();
+        timer.start();
     }
 
     private void sendSMS() {
