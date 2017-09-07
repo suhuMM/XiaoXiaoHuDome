@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.suhu.android.R;
 import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.dialog.ShareDialog;
 import com.suhu.android.utils.AccountValidatorUtil;
 import com.suhu.android.utils.Config;
 import com.suhu.android.utils.MD5Tools;
@@ -36,6 +37,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
     Button login;
 
     private String phoneS, passwordS;
+    private ShareDialog dialog;
 
     @Override
     public int showContView() {
@@ -56,6 +58,26 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
 
     @Override
     public void setCreateView(Bundle savedInstanceState) {
+        dialog = ShareDialog.newInstance(8,9.0f,false,false,false);
+        dialog.setOnShareClickListener(new ShareDialog.OnShareClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.sina:
+                        Toast.makeText(LoginActivity.this,"新浪",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.qq:
+                        Toast.makeText(LoginActivity.this,"QQ",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.wechat:
+                        Toast.makeText(LoginActivity.this,"微信好友",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.wxcircle:
+                        Toast.makeText(LoginActivity.this,"朋友圈",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -74,7 +96,8 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
                 startActivity(new Intent(this,RegistrationActivity.class));
                 break;
             case R.id.qq:
-                loginQQ();
+                //loginQQ();
+                showDialog();
                 break;
         }
     }
@@ -124,4 +147,12 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
     public void onCancel(SHARE_MEDIA share_media, int i) {
 
     }
+
+    private void showDialog() {
+
+        dialog.show(getSupportFragmentManager(),"blur_sample");
+
+    }
+
+
 }
