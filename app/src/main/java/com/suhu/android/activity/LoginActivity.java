@@ -3,9 +3,6 @@ package com.suhu.android.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,7 +56,6 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
 
     @Override
     public void setCreateView(Bundle savedInstanceState) {
-        setListener();
     }
 
     @Override
@@ -67,59 +63,6 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
     }
-
-    private void setListener() {
-        login.setClickable(false);
-        login.setPressed(true);
-        phone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(editable.toString())&&!TextUtils.isEmpty(password.getText().toString())) {
-                    login.setClickable(true);
-                    login.setPressed(false);
-
-                } else {
-                    login.setClickable(false);
-                    login.setPressed(true);
-                }
-            }
-        });
-
-        password.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(editable.toString())&&!TextUtils.isEmpty(phone.getText().toString())) {
-                    login.setClickable(true);
-                    login.setPressed(false);
-
-                } else {
-                    login.setClickable(false);
-                    login.setPressed(true);
-                }
-            }
-        });
-    }
-
 
     @OnClick({R.id.login,R.id.right,R.id.qq})
     public void onViewClicked(View view) {
@@ -153,8 +96,6 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
             finish();
         }else {
             Toast.makeText(this, "用户名或者密码错误", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,MainActivity.class));
-            finish();
         }
     }
 

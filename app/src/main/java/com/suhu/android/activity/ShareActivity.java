@@ -2,6 +2,7 @@ package com.suhu.android.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
@@ -13,6 +14,9 @@ import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.OnClick;
 
@@ -27,6 +31,18 @@ public class ShareActivity extends BaseTitleActivity implements UMShareListener{
     //private static final int REQUEST_PERMISSION_CODE = 1;
     private static final int REQUEST_PERMISSION = 2;
 
+    private List<String> permissions = new ArrayList<>();
+    private String[] mPermissionList = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.CALL_PHONE,
+            Manifest.permission.READ_LOGS,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.SET_DEBUG_APP,
+            Manifest.permission.SYSTEM_ALERT_WINDOW,
+            Manifest.permission.GET_ACCOUNTS,
+            Manifest.permission.WRITE_APN_SETTINGS};
 
     @Override
     public int showContView() {
@@ -61,18 +77,15 @@ public class ShareActivity extends BaseTitleActivity implements UMShareListener{
     }
 
     private void shareText() {
-            String[] mPermissionList = new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.CALL_PHONE,
-                    Manifest.permission.READ_LOGS,
-                    Manifest.permission.READ_PHONE_STATE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.SET_DEBUG_APP,
-                    Manifest.permission.SYSTEM_ALERT_WINDOW,
-                    Manifest.permission.GET_ACCOUNTS,
-                    Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this,mPermissionList,REQUEST_PERMISSION);
+
+        for (String s : mPermissionList) {
+            if (ActivityCompat.checkSelfPermission(this,s)!= PackageManager.PERMISSION_GRANTED){
+                permissions.add(s);
+            }
+        }
+        if (permissions.size() > 0) {
+            ActivityCompat.requestPermissions(this,permissions.toArray(new String[permissions.size()]), REQUEST_PERMISSION);
+        }
     }
 
     @Override
@@ -99,7 +112,6 @@ public class ShareActivity extends BaseTitleActivity implements UMShareListener{
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == REQUEST_PERMISSION){
-
             UMImage image = new UMImage(ShareActivity.this,"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504762622136&di=e238d3b4a8ea8f8f40c36160a00f1cfe&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150511%2F139-150511112R7.jpg");
             image.compressStyle = UMImage.CompressStyle.SCALE;
             new ShareAction(this)
@@ -108,6 +120,7 @@ public class ShareActivity extends BaseTitleActivity implements UMShareListener{
                     .withMedia(image)
                     .setCallback(this)
                     .share();
+
         }
 
     }
