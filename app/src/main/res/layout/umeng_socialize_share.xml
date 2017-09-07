@@ -10,7 +10,7 @@
         android:id="@+id/umeng_socialize_share_titlebar"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="#0086DC">
+        android:background="@color/colorPrimary">
 
         <TextView
             android:id="@+id/umeng_title"

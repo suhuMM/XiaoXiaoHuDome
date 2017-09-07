@@ -15,11 +15,21 @@ import android.widget.Toast;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseTitleActivity;
 import com.suhu.android.utils.AccountValidatorUtil;
+import com.suhu.android.utils.Config;
+import com.suhu.android.utils.MD5Tools;
+import com.suhu.android.utils.SharedPreferencesUtils;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseTitleActivity {
+import static com.umeng.socialize.bean.SHARE_MEDIA.QQ;
+
+public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
 
     @BindView(R.id.phone)
     EditText phone;
@@ -50,6 +60,12 @@ public class LoginActivity extends BaseTitleActivity {
     @Override
     public void setCreateView(Bundle savedInstanceState) {
         setListener();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
     }
 
     private void setListener() {
@@ -105,7 +121,7 @@ public class LoginActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.login,R.id.right})
+    @OnClick({R.id.login,R.id.right,R.id.qq})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login:
@@ -114,8 +130,16 @@ public class LoginActivity extends BaseTitleActivity {
             case R.id.right:
                 startActivity(new Intent(this,RegistrationActivity.class));
                 break;
+            case R.id.qq:
+                loginQQ();
+                break;
         }
     }
+
+    private void loginQQ() {
+        UMShareAPI.get(this).getPlatformInfo(this, QQ, this);
+    }
+
 
     private void login() {
         phoneS = phone.getText().toString().trim();
@@ -124,14 +148,39 @@ public class LoginActivity extends BaseTitleActivity {
             Toast.makeText(this, "请输正确的入手机号", Toast.LENGTH_LONG).show();
             return;
         }
-//        if ( SharedPreferencesUtils.getLoginMessage(this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(passwordS))){
-//            startActivity(new Intent(this,MainActivity.class));
-//            finish();
-//        }else {
-//            Toast.makeText(this, "用户名或者密码错误", Toast.LENGTH_LONG).show();
-//        }
-
-        startActivity(new Intent(this,MainActivity.class));
+        if ( SharedPreferencesUtils.getLoginMessage(this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(passwordS))){
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        }else {
+            Toast.makeText(this, "用户名或者密码错误", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        }
     }
 
+
+    @Override
+    public void onStart(SHARE_MEDIA share_media) {
+
+    }
+
+    @Override
+    public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+        switch (share_media){
+            case QQ:
+                startActivity(new Intent(this,MainActivity.class));
+                finish();
+                break;
+        }
+    }
+
+    @Override
+    public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(SHARE_MEDIA share_media, int i) {
+
+    }
 }
