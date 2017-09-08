@@ -10,6 +10,6 @@
     <color name="text">#1b1b1b</color>
     <color name="hint">#8b8a8a</color>
     <color name="button_background">#c4c3c3</color>
-
+    <color name="color_f6">#f6f6f6</color>
 
 </resources>

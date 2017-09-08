@@ -42,16 +42,28 @@ repositories {
         dirs 'libs'
     }
 }
+
+
+configurations.all {
+
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.0'
+            }
+        }
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':PushSDK')
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-
     //sms
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
     compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
@@ -67,5 +79,9 @@ dependencies {
     compile 'com.jakewharton:butterknife-compiler:8.8.1'
     //背景模糊dialog
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
+    //apk更新
+    compile 'com.github.czy1121:update:1.1.1'
+    //图片选择
+    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.1'
 
 }

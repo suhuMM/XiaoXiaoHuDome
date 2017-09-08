@@ -58,7 +58,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
 
     @Override
     public void setCreateView(Bundle savedInstanceState) {
-        dialog = ShareDialog.newInstance(8,9.0f,false,false,false);
+        dialog = ShareDialog.newInstance(2,9.0f,false,false,false);
         dialog.setOnShareClickListener(new ShareDialog.OnShareClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +68,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
                         break;
                     case R.id.qq:
                         Toast.makeText(LoginActivity.this,"QQ",Toast.LENGTH_SHORT).show();
+                        loginQQ();
                         break;
                     case R.id.wechat:
                         Toast.makeText(LoginActivity.this,"微信好友",Toast.LENGTH_SHORT).show();
@@ -96,7 +97,6 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
                 startActivity(new Intent(this,RegistrationActivity.class));
                 break;
             case R.id.qq:
-                //loginQQ();
                 showDialog();
                 break;
         }
@@ -118,6 +118,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
             startActivity(new Intent(this,MainActivity.class));
             finish();
         }else {
+            startActivity(new Intent(this,MainActivity.class));
             Toast.makeText(this, "用户名或者密码错误", Toast.LENGTH_LONG).show();
         }
     }

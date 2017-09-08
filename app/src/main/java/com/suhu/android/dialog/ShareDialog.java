@@ -12,6 +12,8 @@ import com.suhu.android.R;
 
 import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 
+import static android.R.attr.fragment;
+
 
 /**
  * Created by Administrator on 2017/9/7 0007.
@@ -35,10 +37,7 @@ public class ShareDialog extends SupportBlurDialogFragment implements View.OnCli
 
     private ImageView sina,qq,wechat,wxcircle;
 
-
     private OnShareClickListener listener;
-
-
 
     public interface OnShareClickListener{
         void onClick(View view);
@@ -52,7 +51,7 @@ public class ShareDialog extends SupportBlurDialogFragment implements View.OnCli
                                           boolean dimming,
                                           boolean debug,
                                           boolean mBlurredActionBar) {
-        ShareDialog fragment = new ShareDialog();
+        ShareDialog dialog = new ShareDialog();
         Bundle args = new Bundle();
         args.putInt(
                 BUNDLE_KEY_BLUR_RADIUS,
@@ -79,8 +78,8 @@ public class ShareDialog extends SupportBlurDialogFragment implements View.OnCli
                 false
         );
 
-        fragment.setArguments(args);
-        return fragment;
+        dialog.setArguments(args);
+        return dialog;
     }
 
     @Override

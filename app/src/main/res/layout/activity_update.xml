@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/title_layout" />
+
+    <Button
+        android:id="@+id/button_1"
+        android:text="检测更新"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/button_2"
+        android:text="检测更新-不可忽略"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/button_3"
+        android:text="检测更新-强制更新"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+
+    <Button
+        android:id="@+id/button_4"
+        android:text="不提示直接下载最新版本"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/button_5"
+        android:text="检测更新-没有新版本"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/button_6"
+        android:text="清除缓存"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+
+
+</LinearLayout>
