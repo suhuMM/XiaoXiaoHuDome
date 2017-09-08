@@ -19,7 +19,7 @@ import ezy.boost.update.UpdateUtil;
 /**
  * @author suhu
  * @data 2017/9/8.
- * @description
+ * @description https://github.com/czy1121/update
  */
 
 public class UpdateActivity extends BaseTitleActivity {

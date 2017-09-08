@@ -31,7 +31,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * @author suhu
  * @data 2017/9/8.
- * @description
+ * @description https://github.com/suhuMM/PictureSelector
  */
 
 public class ImageSelectActivity extends BaseTitleActivity {
