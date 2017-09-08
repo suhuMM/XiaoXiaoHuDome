@@ -2,7 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/photo"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:civ_border_width="5dp"
+            app:civ_border_color="@color/colorPrimary"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/image_select"
@@ -16,6 +33,15 @@
     <Button
         android:id="@+id/update"
         android:text="版本更新"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/logout"
+        android:text="退出登录"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         style="@style/Button"

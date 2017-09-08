@@ -77,6 +77,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
                         Toast.makeText(LoginActivity.this,"朋友圈",Toast.LENGTH_SHORT).show();
                         break;
                 }
+                if (dialog !=null) dialog.dismiss();
             }
         });
     }

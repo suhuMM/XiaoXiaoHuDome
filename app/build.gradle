@@ -83,5 +83,8 @@ dependencies {
     compile 'com.github.czy1121:update:1.1.1'
     //图片选择
     compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.1'
-
+    //eventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //圆形头像
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

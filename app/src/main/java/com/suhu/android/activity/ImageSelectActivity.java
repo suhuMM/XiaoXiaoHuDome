@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -35,10 +36,15 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class ImageSelectActivity extends BaseTitleActivity {
+    private static final int MAX_SELECT_NUM = 9;
+    private static final int IMAGE_SPAN_COUNT= 3;
+
+
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
     private GridImageAdapter adapter;
-    private int maxSelectNum = 9;
+
+
     private List<LocalMedia> selectList = new ArrayList<>();
 
     @Override
@@ -58,11 +64,11 @@ public class ImageSelectActivity extends BaseTitleActivity {
 
     private void addData() {
 
-        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, IMAGE_SPAN_COUNT, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         adapter = new GridImageAdapter(this, onAddPicClickListener);
         adapter.setList(selectList);
-        adapter.setSelectMax(maxSelectNum);
+        adapter.setSelectMax(MAX_SELECT_NUM);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new GridImageAdapter.OnItemClickListener() {
             @Override
@@ -108,20 +114,60 @@ public class ImageSelectActivity extends BaseTitleActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
+    private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
+        @Override
+        public void onAddPicClick() {
+            PictureSelector.create(ImageSelectActivity.this)
+                    .openGallery(PictureMimeType.ofAll())
+                    .maxSelectNum(MAX_SELECT_NUM)
+                    .minSelectNum(1)
+                    .imageSpanCount(IMAGE_SPAN_COUNT)
+                    .selectionMode(PictureConfig.MULTIPLE)
+                    .previewImage(true)
+                    .compressGrade(Luban.THIRD_GEAR)
+                    .isCamera(true)
+                    .isZoomAnim(true)
+                    .sizeMultiplier(0.5f)
+                    .setOutputCameraPath("/CustomPath")
+                    .enableCrop(false)
+                    .compress(true)
+                    .compressMode(PictureConfig.LUBAN_COMPRESS_MODE)
+                    .withAspectRatio(1, 1)
+                    .isGif(true)
+                    .freeStyleCropEnabled(true)
+                    .selectionMedia(selectList)
+                    .previewEggs(true)
+                    .cropCompressQuality(90)
+                    .compressMaxKB(Luban.CUSTOM_GEAR)
+                    .compressWH(1, 1)
+                    .videoQuality(1)
+                    .videoSecond(10)
+                    .recordVideoSecond(10)
+                    .forResult(PictureConfig.CHOOSE_REQUEST);
+        }
+
+    };
+
+
+
+    @OnClick(R.id.submit)
+    public void onViewClicked(View view) {
+        super.onViewClicked(view);
+        clear();
+    }
+
+
+    private void clear(){
         RxPermissions permissions = new RxPermissions(this);
         permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
             @Override
             public void onSubscribe(Disposable d) {
             }
-
             @Override
             public void onNext(Boolean aBoolean) {
                 if (aBoolean) {
                     PictureFileUtils.deleteCacheDirFile(ImageSelectActivity.this);
+                    Toast.makeText(ImageSelectActivity.this, "清理成功", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ImageSelectActivity.this,
                             getString(R.string.picture_jurisdiction), Toast.LENGTH_SHORT).show();
@@ -137,39 +183,4 @@ public class ImageSelectActivity extends BaseTitleActivity {
             }
         });
     }
-
-    private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
-        @Override
-        public void onAddPicClick() {
-            PictureSelector.create(ImageSelectActivity.this)
-                    .openGallery(PictureMimeType.ofAll())
-                    .maxSelectNum(maxSelectNum)
-                    .minSelectNum(1)
-                    .imageSpanCount(3)
-                    .selectionMode(PictureConfig.MULTIPLE)
-                    .previewImage(true)
-                    .compressGrade(Luban.THIRD_GEAR)
-                    .isCamera(true)
-                    .isZoomAnim(true)
-                    .sizeMultiplier(0.5f)
-                    .setOutputCameraPath("/CustomPath")
-                    .enableCrop(false)
-                    .compress(true)
-                    .compressMode(PictureConfig.LUBAN_COMPRESS_MODE)
-                    .withAspectRatio(1,1)
-                    .isGif(true)
-                    .freeStyleCropEnabled(true)
-                    .selectionMedia(selectList)
-                    .previewEggs(true)
-                    .cropCompressQuality(90)
-                    .compressMaxKB(Luban.CUSTOM_GEAR)
-                    .compressWH(1,1)
-                    .videoQuality(1)
-                    .videoSecond(10)
-                    .recordVideoSecond(10)
-                    .forResult(PictureConfig.CHOOSE_REQUEST);
-        }
-
-    };
-
 }

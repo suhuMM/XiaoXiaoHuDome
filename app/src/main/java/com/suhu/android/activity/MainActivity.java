@@ -1,19 +1,18 @@
 package com.suhu.android.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.hjm.bottomtabbar.BottomTabBar;
+import com.luck.picture.lib.config.PictureConfig;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseActivity;
+import com.suhu.android.fragment.FragmentCloud;
 import com.suhu.android.fragment.FragmentInformation;
 import com.suhu.android.fragment.FragmentPerson;
-import com.suhu.android.fragment.FragmentCloud;
-import com.umeng.socialize.UMAuthListener;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
-import java.util.Map;
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,29 +50,14 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        UMShareAPI.get(this).deleteOauth(this, SHARE_MEDIA.QQ, new UMAuthListener() {
-            @Override
-            public void onStart(SHARE_MEDIA share_media) {
-
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    EventBus.getDefault().post(data);
+                    break;
             }
-
-            @Override
-            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-
-            }
-
-            @Override
-            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
-
-            }
-
-            @Override
-            public void onCancel(SHARE_MEDIA share_media, int i) {
-
-            }
-        });
-
+        }
     }
 }
