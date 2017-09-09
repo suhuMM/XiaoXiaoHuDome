@@ -128,6 +128,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!--高德地图-->
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="1f3e03af2aca84d80ed412c771208031"/>
+        <service android:name="com.amap.api.location.APSService"></service>
+
         <!-- 项目原生页面 -->
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
@@ -141,6 +145,7 @@
         <activity android:name=".activity.ShareActivity"/>
         <activity android:name=".activity.UpdateActivity"/>
         <activity android:name=".activity.ImageSelectActivity"/>
+        <activity android:name=".activity.SportActivity"/>
     </application>
 
 </manifest>

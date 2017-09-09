@@ -29,6 +29,14 @@
         style="@style/Button"
         android:layout_marginTop="15dp"
         />
+    <Button
+        android:id="@+id/sport"
+        android:text="开始运动"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        style="@style/Button"
+        android:layout_marginTop="15dp"
+        />
 
     <Button
         android:id="@+id/update"

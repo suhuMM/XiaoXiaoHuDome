@@ -22,6 +22,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.suhu.android.R;
 import com.suhu.android.activity.ImageSelectActivity;
+import com.suhu.android.activity.SportActivity;
 import com.suhu.android.activity.UpdateActivity;
 import com.suhu.android.utils.Config;
 import com.umeng.socialize.UMAuthListener;
@@ -89,11 +90,14 @@ public class FragmentPerson extends Fragment {
     }
 
 
-    @OnClick({R.id.image_select, R.id.update, R.id.photo, R.id.logout})
+    @OnClick({R.id.image_select,R.id.sport, R.id.update, R.id.photo, R.id.logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_select:
                 startActivity(new Intent(getActivity(), ImageSelectActivity.class));
+                break;
+            case R.id.sport:
+                startActivity(new Intent(getActivity(), SportActivity.class));
                 break;
             case R.id.update:
                 startActivity(new Intent(getActivity(), UpdateActivity.class));

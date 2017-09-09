@@ -87,4 +87,10 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     //圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    //高德地图
+    //定位
+    compile 'com.amap.api:location:latest.integration'
+    //2D地图
+    compile 'com.amap.api:map2d:latest.integration'
+
 }
