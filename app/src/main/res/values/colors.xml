@@ -11,5 +11,6 @@
     <color name="hint">#8b8a8a</color>
     <color name="button_background">#c4c3c3</color>
     <color name="color_f6">#f6f6f6</color>
+    <color name="stroke">#00FFFFFF</color>
 
 </resources>
