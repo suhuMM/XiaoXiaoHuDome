@@ -93,6 +93,11 @@ public abstract class BaseSlidingActivity extends AppCompatActivity {
                         .slideOutPercent(0.5f).create(),
                 // 滑动的监听
                 null);
+//          页面中有viewPager时可有用
+//        //设置可以滑动
+//        mSlideBackLayout.edgeOnly(false);
+//        //禁止滑动
+//        mSlideBackLayout.edgeOnly(true);
     }
 
     @Override
