@@ -20,6 +20,7 @@ import butterknife.Unbinder;
 
 /**
  * Created by Administrator on 2017/9/2 0002.
+ * https://github.com/YoKeyword/SwipeBackFragment
  */
 
 public abstract class BaseSlidingActivity extends AppCompatActivity {
