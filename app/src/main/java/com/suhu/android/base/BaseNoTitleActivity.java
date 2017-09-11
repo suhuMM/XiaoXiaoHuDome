@@ -11,7 +11,7 @@ import com.umeng.analytics.MobclickAgent;
  * @description
  */
 
-public class BaseActivity extends AppCompatActivity{
+public class BaseNoTitleActivity extends AppCompatActivity{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

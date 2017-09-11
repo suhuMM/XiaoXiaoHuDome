@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.BaseSlidingActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,7 +24,7 @@ import butterknife.OnClick;
  * @description
  */
 
-public class HtmlActivity extends BaseTitleActivity{
+public class HtmlActivity extends BaseSlidingActivity{
     @BindView(R.id.webView)
     WebView webView;
 
@@ -92,6 +92,7 @@ public class HtmlActivity extends BaseTitleActivity{
             return "android welcome you";
         }
     }
+
 
 
 }

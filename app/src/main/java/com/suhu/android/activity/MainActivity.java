@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.luck.picture.lib.config.PictureConfig;
 import com.suhu.android.R;
-import com.suhu.android.base.BaseActivity;
+import com.suhu.android.base.BaseNoTitleActivity;
 import com.suhu.android.fragment.FragmentCloud;
 import com.suhu.android.fragment.FragmentInformation;
 import com.suhu.android.fragment.FragmentPerson;
@@ -17,7 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseNoTitleActivity {
 
     @BindView(R.id.bottom_tab_bar)
     BottomTabBar bottomTabBar;

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.BaseSlidingActivity;
 
 import butterknife.OnClick;
 import ezy.boost.update.ICheckAgent;
@@ -22,7 +22,7 @@ import ezy.boost.update.UpdateUtil;
  * @description https://github.com/czy1121/update
  */
 
-public class UpdateActivity extends BaseTitleActivity {
+public class UpdateActivity extends BaseSlidingActivity {
 
     String mCheckUrl = "http://client.waimai.baidu.com/message/updatetag";
 

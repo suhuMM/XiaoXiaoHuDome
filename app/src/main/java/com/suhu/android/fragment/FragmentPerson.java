@@ -96,15 +96,18 @@ public class FragmentPerson extends Fragment {
         switch (view.getId()) {
             case R.id.image_select:
                 startActivity(new Intent(getActivity(), ImageSelectActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.sport:
                 startActivity(new Intent(getActivity(), SportActivity.class));
                 break;
             case R.id.html:
                 startActivity(new Intent(getActivity(), HtmlActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.update:
                 startActivity(new Intent(getActivity(), UpdateActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.photo:
                 photograph();

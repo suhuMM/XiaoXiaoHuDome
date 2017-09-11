@@ -17,7 +17,7 @@ import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.suhu.android.R;
 import com.suhu.android.adapter.GridImageAdapter;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.BaseSlidingActivity;
 import com.suhu.android.manager.FullyGridLayoutManager;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import io.reactivex.disposables.Disposable;
  * @description https://github.com/suhuMM/PictureSelector
  */
 
-public class ImageSelectActivity extends BaseTitleActivity {
+public class ImageSelectActivity extends BaseSlidingActivity {
     private static final int MAX_SELECT_NUM = 9;
     private static final int IMAGE_SPAN_COUNT= 3;
 

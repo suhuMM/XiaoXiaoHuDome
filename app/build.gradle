@@ -79,6 +79,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    //activity侧滑退出
+    compile project(':library')
     //sms
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
     compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
@@ -107,5 +109,7 @@ dependencies {
     compile 'com.amap.api:location:latest.integration'
     //3D地图
     compile 'com.amap.api:3dmap:latest.integration'
+
+
 
 }

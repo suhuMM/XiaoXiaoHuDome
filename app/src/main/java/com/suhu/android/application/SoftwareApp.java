@@ -3,6 +3,7 @@ package com.suhu.android.application;
 import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.oubowu.slideback.ActivityHelper;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.socialize.Config;
@@ -22,9 +23,16 @@ public class SoftwareApp extends Application{
         PlatformConfig.setSinaWeibo("3561365327", "2bca4073acc3a5f602e6e699079679cd","http://sns.whalecloud.com/");
     }
 
+    private ActivityHelper mActivityHelper;
+    private static SoftwareApp softwareApp;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mActivityHelper = new ActivityHelper();
+        registerActivityLifecycleCallbacks(mActivityHelper);
+        softwareApp = this;
 
         Utils.init(this);
         UMShareAPI.get(this);
@@ -43,4 +51,9 @@ public class SoftwareApp extends Application{
         });
 
     }
+
+    public static ActivityHelper getActivityHelper(){
+        return softwareApp.mActivityHelper;
+    }
+
 }
