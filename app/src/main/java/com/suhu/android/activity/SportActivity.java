@@ -23,6 +23,7 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseTitleActivity;
@@ -48,6 +49,7 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
     private AMapLocationClientOption mLocationOption;
     private LocationSource.OnLocationChangedListener mListener;
     private PolylineOptions polylineOptions;
+    private Polyline polyline;
 
     @Override
     public int showContView() {
@@ -179,7 +181,12 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
                 LatLng latLng = new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude());
                 if (latLngList.size() > 0) {
                     polylineOptions.add(latLngList.getLast(), latLng);
-                    aMap.addPolyline(polylineOptions);
+                    if (polyline ==null){
+                        polyline = aMap.addPolyline(polylineOptions);
+                    }else {
+                        polyline.setPoints(polylineOptions.getPoints());
+                    }
+
                 }else {
                     MarkerOptions markerOption = new MarkerOptions();
                     markerOption.position(latLng);

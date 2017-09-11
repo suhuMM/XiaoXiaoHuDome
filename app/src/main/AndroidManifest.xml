@@ -66,12 +66,6 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
         <activity
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:launchMode="singleTask"
@@ -146,6 +140,7 @@
         <activity android:name=".activity.UpdateActivity"/>
         <activity android:name=".activity.ImageSelectActivity"/>
         <activity android:name=".activity.SportActivity"/>
+        <activity android:name=".activity.HtmlActivity"/>
     </application>
 
 </manifest>
