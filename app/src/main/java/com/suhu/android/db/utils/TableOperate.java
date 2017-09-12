@@ -117,6 +117,7 @@ public class TableOperate {
             Field[] fields = clazz.getDeclaredFields();//获取该类所有的属性
             ContentValues value = new ContentValues();
             for (Field field : fields) {
+                if (field.getName().equals("$change")||field.getName().equals("serialVersionUID")) continue;
                 field.setAccessible(true); //取消对age属性的修饰符的检查访问，以便为属性赋值
                 String content = (String) field.get(object);//获取该属性的内容
                 value.put(field.getName(), content);
