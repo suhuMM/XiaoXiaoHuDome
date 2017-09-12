@@ -56,4 +56,7 @@ public class SoftwareApp extends Application{
         return softwareApp.mActivityHelper;
     }
 
+    public static SoftwareApp getInstance(){
+        return softwareApp;
+    }
 }

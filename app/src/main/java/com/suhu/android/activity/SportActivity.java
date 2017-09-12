@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -27,10 +29,16 @@ import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.db.SportModel;
+import com.suhu.android.db.utils.TabConfig;
+import com.suhu.android.db.utils.TableOperate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/9/9 0009.
@@ -59,6 +67,11 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
     @Override
     public void setActionBar() {
         title.setText("运动");
+        TextView tv = new TextView(this);
+        tv.setText("保存并退出");
+        tv.setTextColor(Color.WHITE);
+        tv.setTextSize(14);
+        right.addView(tv);
     }
 
     @Override
@@ -206,5 +219,35 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
                 Toast.makeText(this, errText, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @OnClick(R.id.right)
+    public void onViewClicked(View view){
+        super.onViewClicked(view);
+        switch (view.getId()){
+            case R.id.right:
+                saveData();
+                break;
+        }
+
+    }
+
+    private void saveData(){
+        StringBuffer buffer = new StringBuffer();
+        for (LatLng latLng : latLngList) {
+            buffer.append(latLng.longitude+",");
+            buffer.append(latLng.latitude+";");
+        }
+        SportModel model = new SportModel();
+        model.setSportTime(getTime());
+        model.setLatLngString("123");
+        TableOperate operate = new TableOperate();
+        operate.insert(TabConfig.Sport.TAB_NAME,model);
+        //finish();
+    }
+
+    private String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date());
     }
 }
