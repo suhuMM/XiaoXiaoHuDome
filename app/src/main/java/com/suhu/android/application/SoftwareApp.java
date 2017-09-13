@@ -10,6 +10,8 @@ import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
+import io.rong.imkit.RongIM;
+
 /**
  * Created by Administrator on 2017/9/2 0002.
  */
@@ -30,14 +32,23 @@ public class SoftwareApp extends Application{
     public void onCreate() {
         super.onCreate();
 
+        //滑动退出
         mActivityHelper = new ActivityHelper();
         registerActivityLifecycleCallbacks(mActivityHelper);
         softwareApp = this;
 
+        //工具类注册
         Utils.init(this);
+
+        //融云
+        RongIM.init(this,"3argexb630q4e");
+
+        //UM分享注册
         UMShareAPI.get(this);
         Config.DEBUG = true;
-        PushAgent mPushAgent = PushAgent.getInstance(this);//注册推送服务，每次调用register方法都会回调该接口
+
+        //UM推送：注册推送服务，每次调用register方法都会回调该接口
+        PushAgent mPushAgent = PushAgent.getInstance(this);
         mPushAgent.register(new IUmengRegisterCallback() {
 
             @Override

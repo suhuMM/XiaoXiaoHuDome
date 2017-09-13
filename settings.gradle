@@ -1,1 +1,1 @@
-include ':app', 'PushSDK', ':library'
+include ':app', 'PushSDK', ':library', ':IMLib', ':IMKit'

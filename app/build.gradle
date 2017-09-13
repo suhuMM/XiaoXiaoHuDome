@@ -13,6 +13,9 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk{
+            abiFilters "armeabi-v7a","x86"
+        }
     }
     dexOptions {
         javaMaxHeapSize "4g"
@@ -28,6 +31,12 @@ android {
         exclude 'META-INF/notice.txt'
     }
 
+    sourceSets{
+        main{
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
 
     buildTypes {
         release {
@@ -79,6 +88,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    //融云即时通信
+    compile project(':IMKit')
     //activity侧滑退出
     compile project(':library')
     //sms
@@ -109,7 +120,5 @@ dependencies {
     compile 'com.amap.api:location:latest.integration'
     //3D地图
     compile 'com.amap.api:3dmap:latest.integration'
-
-
 
 }
