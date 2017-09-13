@@ -1,10 +1,12 @@
 package com.suhu.android.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.luck.picture.lib.permissions.RxPermissions;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseSlidingActivity;
 import com.suhu.android.db.SportModel;
@@ -17,6 +19,8 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author suhu
@@ -29,6 +33,7 @@ public class SQLActivity extends BaseSlidingActivity {
     TextView show;
 
     private TableManager manager;
+    private boolean isAllow = false;
 
     @Override
     public int showContView() {
@@ -43,30 +48,36 @@ public class SQLActivity extends BaseSlidingActivity {
     @Override
     public void setCreateView(Bundle savedInstanceState) {
         manager = new TableManager();
+        permission();
     }
 
 
     @OnClick({R.id.insert, R.id.delete, R.id.update, R.id.query,R.id.query_if})
     public void onViewClicked(View view) {
         super.onViewClicked(view);
-        switch (view.getId()) {
-            case R.id.insert:
-                insert();
-                break;
-            case R.id.delete:
-                //delete();
-                deleteAll();
-                break;
-            case R.id.update:
-                update();
-                break;
-            case R.id.query:
-                queryAll();
-                break;
-            case R.id.query_if:
-                query();
-                break;
+        if (isAllow){
+            switch (view.getId()) {
+                case R.id.insert:
+                    insert();
+                    break;
+                case R.id.delete:
+                    //delete();
+                    deleteAll();
+                    break;
+                case R.id.update:
+                    update();
+                    break;
+                case R.id.query:
+                    queryAll();
+                    break;
+                case R.id.query_if:
+                    query();
+                    break;
+            }
+        }else {
+            Toast.makeText(this, "授权失败，不允许操作数据库", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private void delete() {
@@ -111,5 +122,31 @@ public class SQLActivity extends BaseSlidingActivity {
     private String getTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
+    }
+
+    private void permission(){
+        RxPermissions permissions = new RxPermissions(this);
+        permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if (aBoolean) {
+                    isAllow = true;
+                } else {
+                    Toast.makeText(SQLActivity.this,
+                            getString(R.string.picture_jurisdiction), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 }
