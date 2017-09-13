@@ -7,22 +7,30 @@ package com.suhu.android.db;
  */
 
 public class SportModel {
-    private String SportTime;
-    private String latLngString;
+    private String time;
+    private String longitude_latitude;
 
-    public String getSportTime() {
-        return SportTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setSportTime(String sportTime) {
-        SportTime = sportTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getLatLngString() {
-        return latLngString;
+    public String getLongitude_latitude() {
+        return longitude_latitude;
     }
 
-    public void setLatLngString(String latLngString) {
-        this.latLngString = latLngString;
+    public void setLongitude_latitude(String longitude_latitude) {
+        this.longitude_latitude = longitude_latitude;
+    }
+
+    @Override
+    public String toString() {
+        return "SportModel{" +
+                "time='" + time + '\'' +
+                ", longitude_latitude='" + longitude_latitude + '\'' +
+                '}';
     }
 }

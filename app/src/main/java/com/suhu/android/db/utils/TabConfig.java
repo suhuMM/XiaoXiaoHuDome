@@ -7,7 +7,7 @@ package com.suhu.android.db.utils;
  */
 
 public class TabConfig {
-    public static final String DB_NAME = "tiger";
+    public static final String DB_NAME = "tiger.db";
 
     public static class Sport{
         public static final String TAB_NAME = "sport";
@@ -15,11 +15,6 @@ public class TabConfig {
         public static final String LONGITUDE_LATITUDE = "longitude_latitude";
     }
 
-    public static class LatLng{
-        public static final String TAB_NAME = "latLng";
-        public static final String LONGITUDE = "longitude";
-        public static final String LATITUDE = "latitude";
-    }
 
 
 

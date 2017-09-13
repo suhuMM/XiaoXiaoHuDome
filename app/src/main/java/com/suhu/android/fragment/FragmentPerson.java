@@ -23,6 +23,7 @@ import com.luck.picture.lib.permissions.RxPermissions;
 import com.suhu.android.R;
 import com.suhu.android.activity.HtmlActivity;
 import com.suhu.android.activity.ImageSelectActivity;
+import com.suhu.android.activity.SQLActivity;
 import com.suhu.android.activity.SportActivity;
 import com.suhu.android.activity.UpdateActivity;
 import com.suhu.android.utils.Config;
@@ -91,7 +92,7 @@ public class FragmentPerson extends Fragment {
     }
 
 
-    @OnClick({R.id.image_select,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout})
+    @OnClick({R.id.image_select,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_select:
@@ -103,6 +104,10 @@ public class FragmentPerson extends Fragment {
                 break;
             case R.id.html:
                 startActivity(new Intent(getActivity(), HtmlActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
+                break;
+            case R.id.sql:
+                startActivity(new Intent(getActivity(), SQLActivity.class));
                 getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.update:

@@ -29,9 +29,6 @@ import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.suhu.android.R;
 import com.suhu.android.base.BaseTitleActivity;
-import com.suhu.android.db.SportModel;
-import com.suhu.android.db.utils.TabConfig;
-import com.suhu.android.db.utils.TableOperate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -233,17 +230,7 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
     }
 
     private void saveData(){
-        StringBuffer buffer = new StringBuffer();
-        for (LatLng latLng : latLngList) {
-            buffer.append(latLng.longitude+",");
-            buffer.append(latLng.latitude+";");
-        }
-        SportModel model = new SportModel();
-        model.setSportTime(getTime());
-        model.setLatLngString("123");
-        TableOperate operate = new TableOperate();
-        operate.insert(TabConfig.Sport.TAB_NAME,model);
-        //finish();
+        getTime();
     }
 
     private String getTime() {
