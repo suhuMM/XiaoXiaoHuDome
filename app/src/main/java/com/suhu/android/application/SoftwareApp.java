@@ -1,22 +1,33 @@
 package com.suhu.android.application;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 
 import com.blankj.utilcode.util.Utils;
 import com.oubowu.slideback.ActivityHelper;
+import com.suhu.android.core.OtCrashHandler;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
+import com.zhy.http.okhttp.https.HttpsUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
+
+import java.util.concurrent.TimeUnit;
 
 import io.rong.imkit.RongIM;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by Administrator on 2017/9/2 0002.
  */
 
-public class SoftwareApp extends Application{
+public class SoftwareApp extends Application implements IUmengRegisterCallback{
     {
         //ok
         PlatformConfig.setWeixin("wx79b3c663c76916d8", "c12e4143f1715f9d243fd0940a11edd8");
@@ -41,6 +52,7 @@ public class SoftwareApp extends Application{
         Utils.init(this);
 
         //融云
+        RongIM.setServerInfo("nav.cn.ronghub.com", "up.qbox.me");
         RongIM.init(this,"3argexb630q4e");
 
         //UM分享注册
@@ -49,17 +61,29 @@ public class SoftwareApp extends Application{
 
         //UM推送：注册推送服务，每次调用register方法都会回调该接口
         PushAgent mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.register(new IUmengRegisterCallback() {
+        mPushAgent.register(this);
 
-            @Override
-            public void onSuccess(String deviceToken) {
-                //注册成功会返回device token
-            }
+        //配置Cookie(包含Session)
+        CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        //设置可访问所有的https网站
+        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
 
-            @Override
-            public void onFailure(String s, String s1) {
-            }
-        });
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .cookieJar(cookieJar)
+                //配置Log
+                .addInterceptor(new LoggerInterceptor("TAG"))
+                //https
+                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
+
+        // 测试 注意上线时要一定要去掉
+        OtCrashHandler otCrashHandler = OtCrashHandler.getInstance();
+        otCrashHandler.init(this);
 
     }
 
@@ -69,5 +93,26 @@ public class SoftwareApp extends Application{
 
     public static SoftwareApp getInstance(){
         return softwareApp;
+    }
+
+    public static String getCurProcessName(Context context) {
+        int pid = android.os.Process.myPid();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager.getRunningAppProcesses()) {
+            if (appProcess.pid == pid) {
+                return appProcess.processName;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void onSuccess(String s) {
+
+    }
+
+    @Override
+    public void onFailure(String s, String s1) {
+
     }
 }
