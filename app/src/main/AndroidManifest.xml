@@ -123,8 +123,25 @@
         </provider>
 
         <!--高德地图-->
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="1f3e03af2aca84d80ed412c771208031"/>
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="1f3e03af2aca84d80ed412c771208031"/>
         <service android:name="com.amap.api.location.APSService"></service>
+
+        <!--融云及时通讯-->
+        <!--<meta-data-->
+            <!--android:name="RONG_CLOUD_APP_KEY"-->
+            <!--android:value="3argexb630q4e"/>-->
+        <provider
+            android:name="com.suhu.android.provider.IMProvider"
+            android:authorities="${applicationId}.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path"
+                />
+        </provider>
 
         <!-- 项目原生页面 -->
         <activity android:name=".activity.LoginActivity">
