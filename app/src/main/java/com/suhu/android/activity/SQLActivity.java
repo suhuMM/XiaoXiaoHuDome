@@ -54,7 +54,8 @@ public class SQLActivity extends BaseSlidingActivity {
                 insert();
                 break;
             case R.id.delete:
-                delete();
+                //delete();
+                deleteAll();
                 break;
             case R.id.update:
                 update();
@@ -70,6 +71,9 @@ public class SQLActivity extends BaseSlidingActivity {
 
     private void delete() {
         manager.delete(TabConfig.Sport.TAB_NAME,TabConfig.Sport.LONGITUDE_LATITUDE,"suhu");
+    }
+    private void deleteAll(){
+        manager.deleteAll(TabConfig.Sport.TAB_NAME);
     }
 
     private void update() {

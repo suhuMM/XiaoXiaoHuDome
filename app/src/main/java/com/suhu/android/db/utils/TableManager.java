@@ -64,6 +64,17 @@ public class TableManager {
         db.delete(tableName, fieldName + "=?", new String[]{value});
     }
 
+    /**
+     * 删除表中所有数据
+     *
+     * @param tableName 删除数据库的表名
+     *
+     */
+    public void deleteAll(String tableName) {
+        db.delete(tableName, null, null);
+    }
+
+
 
     /**
      * 更改数据库内容
