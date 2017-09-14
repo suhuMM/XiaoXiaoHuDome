@@ -2,6 +2,7 @@ package com.suhu.android.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -103,10 +104,11 @@ public class MainActivity extends BaseNoTitleActivity {
     }
 
     private void initUserInfo() {
+        final Uri uri = Uri.parse("http://www.51zxw.net/bbs/UploadFile/2013-4/201341122335711220.jpg");
         RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
             @Override
             public UserInfo getUserInfo(String s) {
-                return null;
+                return new UserInfo(User.getInstance().getUserId(),"3argexb630q4e",uri);
             }
         },true);
     }

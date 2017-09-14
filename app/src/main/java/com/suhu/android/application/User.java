@@ -10,14 +10,23 @@ public class User {
 
     /**
      * 10086
-     * GIKXW7SbUOB7Amd99KTDI4Nw32R3eixTPXxyUXopBsUzPNc5LVg5qXS08MXW1D/N7gveb6sBTvQrM02kBsHLJA==
+     * test
+     * YeBfudEd4kx52Qv/vSR1F4Nw32R3eixTPXxyUXopBsUzPNc5LVg5qbHf6jzGd+3q7gveb6sBTvQrM02kBsHLJA==
      *
      * 3argexb630q4e
-     * M6itS+//l2ObcheZshI9mYNw32R3eixTPXxyUXopBsUzPNc5LVg5qVTEsVG5LOlDVcQGnfCyo9gEQtb3xDe9MLbcyXovcXV5
+     * suhu
+     * 6JvpriAko02wYBlh3yTIjD8S/nVdu+xyK4vZkxev90Z4gc7fI1Qv89w6dWL6wb/XDXEiBS2o8gZmGFWW7ddH9TaHBQHGCCPDEnOjvcD3aCk=
      * */
+//    private String userId = "10086";
+//    private String token = "YeBfudEd4kx52Qv/vSR1F4Nw32R3eixTPXxyUXopBsUzPNc5LVg5qbHf6jzGd+3q7gveb6sBTvQrM02kBsHLJA==";
+//    private String url = "http://img1.imgtn.bdimg.com/it/u=806806176,4079081363&fm=27&gp=0.jpg";
+
     private String userId = "3argexb630q4e";
-    private String token = "M6itS+//l2ObcheZshI9mYNw32R3eixTPXxyUXopBsUzPNc5LVg5qVTEsVG5LOlDVcQGnfCyo9gEQtb3xDe9MLbcyXovcXV5";
+    private String token = "6JvpriAko02wYBlh3yTIjD8S/nVdu+xyK4vZkxev90Z4gc7fI1Qv89w6dWL6wb/XDXEiBS2o8gZmGFWW7ddH9TaHBQHGCCPDEnOjvcD3aCk=";
     private String url = "http://img1.imgtn.bdimg.com/it/u=806806176,4079081363&fm=27&gp=0.jpg";
+
+//    private String userId = "3argexb630q4e";
+//    private String token = "0L3LhZvmEhmeY/O6z+jqkDdw425PLr6tFkyLhkSfXOmlDCw9tNfLfUcyTHdC9vWaTz2z6Hb0nwEYYnzkBXdBuw==";
 
     private static User userInfo = new User();
 

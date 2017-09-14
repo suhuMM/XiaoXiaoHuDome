@@ -165,17 +165,22 @@
         <activity android:name=".activity.could.IMActivity"/>
 
         <!--会话界面-->
-        <activity android:name=".activity.could.ConversationActivity"
+        <activity
+            android:name=".activity.could.ConversationActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <data
                     android:host="com.suhu.android"
-                    android:pathPrefix="/conversation"
+                    android:pathPrefix="/conversation/"
                     android:scheme="rong" />
             </intent-filter>
+
         </activity>
 
         <!--聚合会话列表-->

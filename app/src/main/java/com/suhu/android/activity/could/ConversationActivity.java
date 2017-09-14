@@ -1,6 +1,7 @@
 package com.suhu.android.activity.could;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.suhu.android.R;
 import com.suhu.android.base.BaseSlidingActivity;
@@ -19,11 +20,14 @@ public class ConversationActivity extends BaseSlidingActivity{
 
     @Override
     public void setActionBar() {
-        title.setText("会话界面");
+        //title.setText("会话界面");
     }
 
     @Override
     public void setCreateView(Bundle savedInstanceState) {
-
+       String name = getIntent().getData().getQueryParameter("title");
+        if (!TextUtils.isEmpty(name)){
+            title.setText(name);
+        }
     }
 }
