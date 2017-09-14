@@ -26,6 +26,7 @@ import com.suhu.android.activity.ImageSelectActivity;
 import com.suhu.android.activity.SQLActivity;
 import com.suhu.android.activity.SportActivity;
 import com.suhu.android.activity.UpdateActivity;
+import com.suhu.android.activity.could.IMActivity;
 import com.suhu.android.utils.Config;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -92,12 +93,16 @@ public class FragmentPerson extends Fragment {
     }
 
 
-    @OnClick({R.id.image_select,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql})
+    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_select:
                 startActivity(new Intent(getActivity(), ImageSelectActivity.class));
                 getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
+                break;
+            case R.id.im_cloud:
+                startActivity(new Intent(getActivity(), IMActivity.class));
+                //getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.sport:
                 startActivity(new Intent(getActivity(), SportActivity.class));

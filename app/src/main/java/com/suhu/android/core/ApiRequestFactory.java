@@ -156,7 +156,7 @@ public class ApiRequestFactory {
         }
         OkHttpUtils
                 .post()
-                .url(url)
+                .url(ApiUrl.URL+url)
                 .params(params)
                 .build()
                 .execute(new StringCallback() {

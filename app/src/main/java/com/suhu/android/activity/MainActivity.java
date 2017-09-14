@@ -3,10 +3,13 @@ package com.suhu.android.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.luck.picture.lib.config.PictureConfig;
 import com.suhu.android.R;
+import com.suhu.android.application.SoftwareApp;
+import com.suhu.android.application.User;
 import com.suhu.android.base.BaseNoTitleActivity;
 import com.suhu.android.fragment.FragmentCloud;
 import com.suhu.android.fragment.FragmentInformation;
@@ -16,6 +19,9 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
 
 public class MainActivity extends BaseNoTitleActivity {
 
@@ -28,7 +34,11 @@ public class MainActivity extends BaseNoTitleActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setBottomTabBar();
+        connect(User.getInstance().getToken());
+        initUserInfo();
     }
+
+
 
 
     private void setBottomTabBar() {
@@ -60,4 +70,45 @@ public class MainActivity extends BaseNoTitleActivity {
             }
         }
     }
+
+    /**
+     *@method 连接融云
+     *@author suhu
+     *@time 2017/9/14 9:50
+     *@param token 从服务端获取的用户身份令牌
+     *@return userId
+     *
+     */
+    private void connect(String token) {
+        if (getApplicationInfo().packageName.equals(SoftwareApp.getCurProcessName(getApplicationContext()))) {
+            RongIM.connect(token, new RongIMClient.ConnectCallback() {
+
+                @Override
+                public void onTokenIncorrect() {
+                    Toast.makeText(MainActivity.this, "Token过期", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onSuccess(String userId) {
+                    User.getInstance().setUserId(userId);
+                    Toast.makeText(MainActivity.this, "融云连接成功", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onError(RongIMClient.ErrorCode errorCode) {
+                    Toast.makeText(MainActivity.this, "连接融云失败", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    private void initUserInfo() {
+        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+            @Override
+            public UserInfo getUserInfo(String s) {
+                return null;
+            }
+        },true);
+    }
+
 }

@@ -34,7 +34,7 @@ public abstract class BaseSlidingActivity extends AppCompatActivity {
     public RelativeLayout right;
 
     private Unbinder unbinder;
-    private SlideBackLayout mSlideBackLayout;
+    public SlideBackLayout mSlideBackLayout;
 
 
     @Override

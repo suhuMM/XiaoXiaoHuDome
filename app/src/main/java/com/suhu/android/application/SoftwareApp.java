@@ -52,7 +52,7 @@ public class SoftwareApp extends Application implements IUmengRegisterCallback{
         Utils.init(this);
 
         //融云
-        RongIM.setServerInfo("nav.cn.ronghub.com", "up.qbox.me");
+        //RongIM.setServerInfo("nav.cn.ronghub.com", "up.qbox.me");
         RongIM.init(this,"3argexb630q4e");
 
         //UM分享注册
