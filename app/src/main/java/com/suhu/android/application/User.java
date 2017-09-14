@@ -49,8 +49,4 @@ public class User {
         this.url = url;
     }
 
-
-    public static void setUserInfo(User userInfo) {
-        User.userInfo = userInfo;
-    }
 }
