@@ -6,7 +6,6 @@ import android.content.Context;
 
 import com.blankj.utilcode.util.Utils;
 import com.oubowu.slideback.ActivityHelper;
-import com.suhu.android.core.OtCrashHandler;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.socialize.Config;
@@ -82,8 +81,8 @@ public class SoftwareApp extends Application implements IUmengRegisterCallback{
         OkHttpUtils.initClient(okHttpClient);
 
         // 测试 注意上线时要一定要去掉
-        OtCrashHandler otCrashHandler = OtCrashHandler.getInstance();
-        otCrashHandler.init(this);
+//        OtCrashHandler otCrashHandler = OtCrashHandler.getInstance();
+//        otCrashHandler.init(this);
 
     }
 

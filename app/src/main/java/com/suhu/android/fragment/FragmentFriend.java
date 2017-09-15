@@ -52,7 +52,7 @@ public class FragmentFriend extends Fragment {
     @OnClick(R.id.chat)
     public void onViewClicked() {
         if (RongIM.getInstance()!=null){
-            RongIM.getInstance().startPrivateChat(getActivity(),"10086","私人聊天");
+            RongIM.getInstance().startPrivateChat(getActivity(),"10086","移动");
         }
 
     }

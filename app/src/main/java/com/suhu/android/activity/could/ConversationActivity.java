@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.BaseTitleActivity;
 
 /**
  * @author suhu
@@ -12,7 +12,7 @@ import com.suhu.android.base.BaseSlidingActivity;
  * @description 会话界面
  */
 
-public class ConversationActivity extends BaseSlidingActivity{
+public class ConversationActivity extends BaseTitleActivity {
     @Override
     public int showContView() {
         return R.layout.activity_cloud_im;
@@ -20,13 +20,14 @@ public class ConversationActivity extends BaseSlidingActivity{
 
     @Override
     public void setActionBar() {
-        //title.setText("会话界面");
+
     }
 
     @Override
     public void setCreateView(Bundle savedInstanceState) {
-       String name = getIntent().getData().getQueryParameter("title");
-        if (!TextUtils.isEmpty(name)){
+        //getIntent().getData().getQueryParameter("targetId");//获取id
+        String name = getIntent().getData().getQueryParameter("title");//获取昵称
+        if (!TextUtils.isEmpty(name)) {
             title.setText(name);
         }
     }

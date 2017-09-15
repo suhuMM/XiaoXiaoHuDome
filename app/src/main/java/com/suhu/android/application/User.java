@@ -23,10 +23,10 @@ public class User {
 
     private String userId = "3argexb630q4e";
     private String token = "6JvpriAko02wYBlh3yTIjD8S/nVdu+xyK4vZkxev90Z4gc7fI1Qv89w6dWL6wb/XDXEiBS2o8gZmGFWW7ddH9TaHBQHGCCPDEnOjvcD3aCk=";
-    private String url = "http://img1.imgtn.bdimg.com/it/u=806806176,4079081363&fm=27&gp=0.jpg";
+    private String url = "http://www.51zxw.net/bbs/UploadFile/2013-4/201341122335711220.jpg";
 
-//    private String userId = "3argexb630q4e";
-//    private String token = "0L3LhZvmEhmeY/O6z+jqkDdw425PLr6tFkyLhkSfXOmlDCw9tNfLfUcyTHdC9vWaTz2z6Hb0nwEYYnzkBXdBuw==";
+
+    private String name = "姓名："+userId;
 
     private static User userInfo = new User();
 
@@ -58,4 +58,11 @@ public class User {
         this.url = url;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

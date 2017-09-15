@@ -3,6 +3,7 @@ package com.suhu.android.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ import com.suhu.android.activity.SQLActivity;
 import com.suhu.android.activity.SportActivity;
 import com.suhu.android.activity.UpdateActivity;
 import com.suhu.android.activity.could.IMActivity;
+import com.suhu.android.application.User;
 import com.suhu.android.utils.Config;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -47,6 +49,8 @@ import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by Administrator on 2017/9/5 0005.
@@ -200,6 +204,16 @@ public class FragmentPerson extends Fragment {
                 String url = media.getCompressPath();
                 Glide.with(getActivity()).load(url).apply(options).into(photo);
                 ImageUtils.save(ImageUtils.getBitmap(new File(url)),Config.PHOTO_URL, Bitmap.CompressFormat.PNG,true);
+                //刷新融云头像
+                if (RongIM.getInstance()!=null){
+                    RongIM.getInstance().refreshUserInfoCache(
+                            new UserInfo(
+                                    User.getInstance().getUserId(),
+                                    User.getInstance().getName(),
+                                    Uri.fromFile(new File(Config.PHOTO_URL))
+                            )
+                    );
+                }
             }
         }
     }

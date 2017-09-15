@@ -15,8 +15,11 @@ import com.suhu.android.base.BaseNoTitleActivity;
 import com.suhu.android.fragment.FragmentCloud;
 import com.suhu.android.fragment.FragmentInformation;
 import com.suhu.android.fragment.FragmentPerson;
+import com.suhu.android.utils.Config;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +32,8 @@ public class MainActivity extends BaseNoTitleActivity {
     @BindView(R.id.bottom_tab_bar)
     BottomTabBar bottomTabBar;
 
+    private Uri uri;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +41,6 @@ public class MainActivity extends BaseNoTitleActivity {
         ButterKnife.bind(this);
         setBottomTabBar();
         connect(User.getInstance().getToken());
-        initUserInfo();
     }
 
 
@@ -81,6 +85,7 @@ public class MainActivity extends BaseNoTitleActivity {
      *
      */
     private void connect(String token) {
+        uri = Uri.fromFile(new File(Config.PHOTO_URL));
         if (getApplicationInfo().packageName.equals(SoftwareApp.getCurProcessName(getApplicationContext()))) {
             RongIM.connect(token, new RongIMClient.ConnectCallback() {
 
@@ -92,6 +97,10 @@ public class MainActivity extends BaseNoTitleActivity {
                 @Override
                 public void onSuccess(String userId) {
                     User.getInstance().setUserId(userId);
+                    if (RongIM.getInstance()!=null){
+                        RongIM.getInstance().setCurrentUserInfo(new UserInfo(User.getInstance().getUserId(),User.getInstance().getName(),uri));
+                        RongIM.getInstance().setMessageAttachedUserInfo(true);
+                    }
                     Toast.makeText(MainActivity.this, "融云连接成功", Toast.LENGTH_LONG).show();
                 }
 
@@ -101,16 +110,6 @@ public class MainActivity extends BaseNoTitleActivity {
                 }
             });
         }
-    }
-
-    private void initUserInfo() {
-        final Uri uri = Uri.parse("http://www.51zxw.net/bbs/UploadFile/2013-4/201341122335711220.jpg");
-        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-            @Override
-            public UserInfo getUserInfo(String s) {
-                return new UserInfo(User.getInstance().getUserId(),"3argexb630q4e",uri);
-            }
-        },true);
     }
 
 }
