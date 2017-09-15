@@ -58,6 +58,8 @@ public class IMActivity extends BaseSlidingActivity{
     }
 
 
+
+
     private void addData() {
         tabList = new ArrayList<>();
         tabList.add("聊天");
@@ -115,6 +117,4 @@ public class IMActivity extends BaseSlidingActivity{
         listFragment.setUri(uri);
         return listFragment;
     }
-
-
 }

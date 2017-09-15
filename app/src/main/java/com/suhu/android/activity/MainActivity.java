@@ -12,14 +12,19 @@ import com.suhu.android.R;
 import com.suhu.android.application.SoftwareApp;
 import com.suhu.android.application.User;
 import com.suhu.android.base.BaseNoTitleActivity;
+import com.suhu.android.db.FriendModel;
+import com.suhu.android.db.utils.TabConfig;
+import com.suhu.android.db.utils.TableManager;
 import com.suhu.android.fragment.FragmentCloud;
 import com.suhu.android.fragment.FragmentInformation;
 import com.suhu.android.fragment.FragmentPerson;
+import com.suhu.android.utils.AddFriend;
 import com.suhu.android.utils.Config;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,9 +46,8 @@ public class MainActivity extends BaseNoTitleActivity {
         ButterKnife.bind(this);
         setBottomTabBar();
         connect(User.getInstance().getToken());
+        AddFriend.addFriendList(this);
     }
-
-
 
 
     private void setBottomTabBar() {
@@ -53,8 +57,8 @@ public class MainActivity extends BaseNoTitleActivity {
                 .setTabPadding(10, 3, 10)
                 .setChangeColor(Color.RED, Color.BLACK)
                 .addTabItem("信息", R.drawable.ic_error_black_24dp, FragmentInformation.class)
-                .addTabItem("云", R.drawable.ic_cloud_black_24dp,   FragmentCloud.class)
-                .addTabItem("我",  R.drawable.ic_person_black_24dp, FragmentPerson.class)
+                .addTabItem("云", R.drawable.ic_cloud_black_24dp, FragmentCloud.class)
+                .addTabItem("我", R.drawable.ic_person_black_24dp, FragmentPerson.class)
                 .isShowDivider(false)
                 .setOnTabChangeListener(new BottomTabBar.OnTabChangeListener() {
                     @Override
@@ -77,12 +81,11 @@ public class MainActivity extends BaseNoTitleActivity {
     }
 
     /**
-     *@method 连接融云
-     *@author suhu
-     *@time 2017/9/14 9:50
-     *@param token 从服务端获取的用户身份令牌
-     *@return userId
-     *
+     * @param token 从服务端获取的用户身份令牌
+     * @return userId
+     * @method 连接融云
+     * @author suhu
+     * @time 2017/9/14 9:50
      */
     private void connect(String token) {
         uri = Uri.fromFile(new File(Config.PHOTO_URL));
@@ -96,10 +99,18 @@ public class MainActivity extends BaseNoTitleActivity {
 
                 @Override
                 public void onSuccess(String userId) {
-                    User.getInstance().setUserId(userId);
-                    if (RongIM.getInstance()!=null){
-                        RongIM.getInstance().setCurrentUserInfo(new UserInfo(User.getInstance().getUserId(),User.getInstance().getName(),uri));
-                        RongIM.getInstance().setMessageAttachedUserInfo(true);
+                    try {
+                        User.getInstance().setUserId(userId);
+                        if (RongIM.getInstance() != null) {
+                            TableManager manager = new TableManager();
+                            List<FriendModel> models = manager.query(TabConfig.Friend.TAB_NAME, FriendModel.class, TabConfig.Friend.USER_ID, User.getInstance().getUserId());
+                            String name = models.get(0).getName();
+                            User.getInstance().setName(name);
+                            RongIM.getInstance().setCurrentUserInfo(new UserInfo(User.getInstance().getUserId(), name, uri));
+                            RongIM.getInstance().setMessageAttachedUserInfo(true);
+                        }
+                    } catch (Exception e) {
+
                     }
                     Toast.makeText(MainActivity.this, "融云连接成功", Toast.LENGTH_LONG).show();
                 }

@@ -15,6 +15,14 @@ public class TabConfig {
         public static final String LONGITUDE_LATITUDE = "longitude_latitude";
     }
 
+    public static class Friend{
+        public static final String TAB_NAME = "friend";
+        public static final String USER_ID = "userId";
+        public static final String NAME = "name";
+        public static final String TOKEN = "token";
+        public static final String URL = "url";
+
+    }
 
 
 

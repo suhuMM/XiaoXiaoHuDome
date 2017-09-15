@@ -33,6 +33,7 @@ public class DBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         createSportTab(sqLiteDatabase);
+        createFriendTab(sqLiteDatabase);
     }
 
 
@@ -60,9 +61,26 @@ public class DBHelper extends SQLiteOpenHelper{
                 +TabConfig.Sport.LONGITUDE_LATITUDE+" verchar(20)"
                        +")"
         );
-
     }
 
-
+    /**
+     *@method 好友列表
+     *@author suhu
+     *@time 2017/9/15 0015 21:03
+     *@param sqLiteDatabase
+     *
+    */
+    private void createFriendTab(SQLiteDatabase sqLiteDatabase){
+        sqLiteDatabase.execSQL(
+                "create table if not exists "+TabConfig.Friend.TAB_NAME
+                        +"("
+                        +"_id integer primary key autoincrement,"
+                        +TabConfig.Friend.USER_ID+" text,"
+                        +TabConfig.Friend.NAME+" text,"
+                        +TabConfig.Friend.TOKEN+" text,"
+                        +TabConfig.Friend.URL+" text"
+                        +")"
+        );
+    }
 
 }
