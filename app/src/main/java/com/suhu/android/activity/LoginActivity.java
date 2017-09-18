@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.activity.BaseTitleActivity;
 import com.suhu.android.dialog.ShareDialog;
 import com.suhu.android.utils.AccountValidatorUtil;
 import com.suhu.android.utils.Config;

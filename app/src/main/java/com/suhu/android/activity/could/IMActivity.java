@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.suhu.android.R;
 import com.suhu.android.adapter.IMPagerAdapter;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.activity.BaseSlidingActivity;
 import com.suhu.android.fragment.FragmentFriend;
 
 import java.util.ArrayList;

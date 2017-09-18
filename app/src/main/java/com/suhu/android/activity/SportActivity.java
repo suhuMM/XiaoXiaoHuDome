@@ -28,7 +28,7 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.suhu.android.R;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.activity.BaseTitleActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

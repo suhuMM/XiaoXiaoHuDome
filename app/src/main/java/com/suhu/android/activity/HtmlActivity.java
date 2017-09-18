@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.activity.BaseSlidingActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

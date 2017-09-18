@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.suhu.android.R;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.activity.BaseSlidingActivity;
 import com.suhu.android.db.SportModel;
 import com.suhu.android.db.utils.TabConfig;
 import com.suhu.android.db.utils.TableManager;

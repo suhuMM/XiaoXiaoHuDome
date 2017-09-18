@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.mob.MobSDK;
 import com.suhu.android.R;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.activity.BaseTitleActivity;
 import com.suhu.android.utils.AccountValidatorUtil;
 import com.suhu.android.utils.Config;
 import com.suhu.android.utils.MD5Tools;

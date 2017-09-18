@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseTitleActivity;
+import com.suhu.android.base.activity.BaseTitleActivity;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;

@@ -17,7 +17,7 @@ import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.suhu.android.R;
 import com.suhu.android.adapter.GridImageAdapter;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.activity.BaseSlidingActivity;
 import com.suhu.android.manager.FullyGridLayoutManager;
 
 import java.util.ArrayList;

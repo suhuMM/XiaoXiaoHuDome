@@ -3,7 +3,7 @@ package com.suhu.android.activity.could;
 import android.os.Bundle;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.activity.BaseSlidingActivity;
 
 /**
  * @author suhu

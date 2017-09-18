@@ -11,7 +11,7 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.suhu.android.R;
 import com.suhu.android.application.SoftwareApp;
 import com.suhu.android.application.User;
-import com.suhu.android.base.BaseNoTitleActivity;
+import com.suhu.android.base.activity.BaseNoTitleActivity;
 import com.suhu.android.db.FriendModel;
 import com.suhu.android.db.utils.TabConfig;
 import com.suhu.android.db.utils.TableManager;

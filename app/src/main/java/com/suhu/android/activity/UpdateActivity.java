@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.suhu.android.R;
-import com.suhu.android.base.BaseSlidingActivity;
+import com.suhu.android.base.activity.BaseSlidingActivity;
 
 import butterknife.OnClick;
 import ezy.boost.update.ICheckAgent;
