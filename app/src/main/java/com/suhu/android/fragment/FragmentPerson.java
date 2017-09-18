@@ -22,6 +22,7 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.suhu.android.R;
+import com.suhu.android.activity.BluetoothActivity;
 import com.suhu.android.activity.HtmlActivity;
 import com.suhu.android.activity.ImageSelectActivity;
 import com.suhu.android.activity.SQLActivity;
@@ -97,7 +98,7 @@ public class FragmentPerson extends Fragment {
     }
 
 
-    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql})
+    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql,R.id.bluetooth})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_select:
@@ -106,7 +107,7 @@ public class FragmentPerson extends Fragment {
                 break;
             case R.id.im_cloud:
                 startActivity(new Intent(getActivity(), IMActivity.class));
-                //getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.sport:
                 startActivity(new Intent(getActivity(), SportActivity.class));
@@ -117,6 +118,10 @@ public class FragmentPerson extends Fragment {
                 break;
             case R.id.sql:
                 startActivity(new Intent(getActivity(), SQLActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
+                break;
+            case R.id.bluetooth:
+                startActivity(new Intent(getActivity(), BluetoothActivity.class));
                 getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.update:
