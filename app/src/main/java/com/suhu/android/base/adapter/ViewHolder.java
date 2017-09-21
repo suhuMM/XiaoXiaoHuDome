@@ -22,38 +22,46 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.suhu.android.R;
+import com.example.yh.yhproject.R;
 
 /**
- * @author suhu
- * @data 2017/9/18.
- * @description
- */
+ *@author suhu
+ *@time 2017/4/11 11:00
+ *
+*/
 
-public class ViewHolder extends RecyclerView.ViewHolder{
+public class ViewHolder extends RecyclerView.ViewHolder {
+
     private SparseArray<View> mViews;
     private View mConvertView;
     private Context mContext;
 
-    public ViewHolder(Context mContext,View itemView) {
+    public ViewHolder(Context context, View itemView) {
         super(itemView);
-        this.mConvertView = itemView;
-        this.mContext = mContext;
-        mViews = new SparseArray<>();
+        mContext = context;
+        mConvertView = itemView;
+        mViews = new SparseArray<View>();
     }
+
 
     public static ViewHolder createViewHolder(Context context, View itemView) {
         ViewHolder holder = new ViewHolder(context, itemView);
         return holder;
     }
 
-    public static ViewHolder createViewHolder(Context context, ViewGroup parent,int layoutId){
-        View itemView = LayoutInflater.from(context).inflate(layoutId,parent,false);
-        ViewHolder holder = new ViewHolder(context,itemView);
+    public static ViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId) {
+        View itemView = LayoutInflater.from(context).inflate(layoutId, parent, false);
+        ViewHolder holder = new ViewHolder(context, itemView);
         return holder;
     }
 
-    public <T extends View> T getView(int viewId){
+    /**
+     * 通过viewId获取控件
+     *
+     * @param viewId
+     * @return
+     */
+    public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
             view = mConvertView.findViewById(viewId);
@@ -66,7 +74,8 @@ public class ViewHolder extends RecyclerView.ViewHolder{
         return mConvertView;
     }
 
-/****以下为辅助方法*****/
+
+    /****以下为辅助方法*****/
 
     /**
      * 设置TextView的值
@@ -257,4 +266,6 @@ public class ViewHolder extends RecyclerView.ViewHolder{
         view.setOnLongClickListener(listener);
         return this;
     }
+
+
 }

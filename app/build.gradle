@@ -132,4 +132,6 @@ dependencies {
     compile 'com.github.d-max:spots-dialog:0.7@aar'
     //design
     compile 'com.android.support:design:26.0.0-alpha1'
+    //px布局
+    compile 'com.zhy:autolayout:1.4.5'
 }
