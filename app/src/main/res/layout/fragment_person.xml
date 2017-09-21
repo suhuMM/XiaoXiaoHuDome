@@ -74,6 +74,14 @@
             android:text="蓝牙使用" />
 
         <Button
+            android:id="@+id/bessel"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:text="贝塞尔曲线" />
+
+        <Button
             android:id="@+id/update"
             style="@style/Button"
             android:layout_width="match_parent"

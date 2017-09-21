@@ -165,6 +165,7 @@
         <activity android:name=".activity.SQLActivity"/>
         <activity android:name=".activity.could.IMActivity"/>
         <activity android:name=".activity.BluetoothActivity"/>
+        <activity android:name=".activity.BesselActivity"/>
 
         <!--会话界面-->
         <activity

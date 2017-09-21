@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_layout" />
+
+    <LinearLayout
+        android:id="@+id/bessel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.suhu.android.view.PullView
+            android:id="@+id/pullView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            view:pColor="#ff0000"
+            view:pConTentDrawableMargin="2dp"
+            view:pDragHeight="110dp"
+            view:pRadius="20dp"
+            view:pTangentAngle="130"
+            view:pTargetGravityHeight="4dp"
+            view:pTargetWidth="350dp" />
+
+    </LinearLayout>
+</LinearLayout>
