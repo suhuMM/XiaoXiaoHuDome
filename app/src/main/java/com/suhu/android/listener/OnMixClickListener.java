@@ -2,8 +2,6 @@ package com.suhu.android.listener;
 
 import android.view.View;
 
-import com.suhu.android.bean.Visitable;
-
 /**
  * @author suhu
  * @data 2017/12/8.
@@ -15,10 +13,10 @@ public interface OnMixClickListener {
     /**
      * 监听
      *
-     * @param visitable
+     * @param object
      * @param position
      * @param view
      */
 
-    void onClick(Visitable visitable , int position , View view);
+    void onClick(Object object , int position , View view);
 }

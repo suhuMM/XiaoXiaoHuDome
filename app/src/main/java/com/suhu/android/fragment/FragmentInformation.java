@@ -109,12 +109,18 @@ public class FragmentInformation extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(new OnMixClickListener() {
             @Override
-            public void onClick(Visitable visitable, int position, View view) {
+            public void onClick(Object visitable, int position, View view) {
                 if (visitable instanceof One){
+                    One one = new One(999,"苏虎");
+                    adapter.portionNotify(position,one);
+
                     Toast.makeText(getActivity(),position+""+visitable.toString(),Toast.LENGTH_SHORT).show();
                 }
 
                 if (visitable instanceof Two){
+                    Two two = new Two("http://img1.imgtn.bdimg.com/it/u=1283738000,2026766525&fm=200&gp=0.jpg","http://img2.imgtn.bdimg.com/it/u=3727774930,3759071354&fm=11&gp=0.jpg");
+                    adapter.portionNotify(position,two);
+
                     Toast.makeText(getActivity(),position+""+visitable.toString(),Toast.LENGTH_SHORT).show();
                 }
 
@@ -151,7 +157,7 @@ public class FragmentInformation extends Fragment {
                         refresh.stopLoadMore();
                         //refresh.setLoadComplete(true);
                     }
-                },2000);
+                },1000);
             }
         });
     }

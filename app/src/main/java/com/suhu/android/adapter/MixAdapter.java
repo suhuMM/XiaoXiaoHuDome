@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * @author suhu
  * @data 2017/12/7.
- * @description
+ * @description https://www.2cto.com/kf/201610/558078.html
  */
 
 public class MixAdapter extends RecyclerView.Adapter<BaseViewHolder>{
@@ -46,6 +46,18 @@ public class MixAdapter extends RecyclerView.Adapter<BaseViewHolder>{
         holder.setUpView(list.get(position),position,context,clickListener);
     }
 
+
+    @Override
+    public void onBindViewHolder(BaseViewHolder holder, int position, List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+        if (payloads.isEmpty()){
+            onBindViewHolder(holder,position);
+        }else{
+            holder.setUpView(list.get(position),position,context,clickListener);
+        }
+
+    }
+
     @Override
     public int getItemViewType(int position) {
         return list.get(position).type(typeFactory);
@@ -66,5 +78,18 @@ public class MixAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     public void setClickListener(OnMixClickListener clickListener) {
         this.clickListener = clickListener;
+    }
+
+    /**
+     * 局部刷新
+     *
+     * @param position
+     */
+    public void portionNotify(int position,Visitable visitable){
+        if (list!= null){
+            list.remove(position);
+            list.add(position,visitable);
+        }
+        notifyItemChanged(position,visitable);
     }
 }
