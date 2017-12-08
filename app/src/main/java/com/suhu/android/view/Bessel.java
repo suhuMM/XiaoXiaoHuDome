@@ -34,6 +34,7 @@ public class Bessel extends ViewGroup{
      */
     private static int mTarGetGravityHeight = 10;
 
+
     /**
      * 角度变换，0-120度
      */
@@ -187,6 +188,7 @@ public class Bessel extends ViewGroup{
             case MotionEvent.ACTION_UP:
                 release();
                 break;
+            default:
         }
         return super.onTouchEvent(event);
     }

@@ -218,6 +218,7 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
         }
     }
 
+    @Override
     @OnClick(R.id.right)
     public void onViewClicked(View view){
         super.onViewClicked(view);
@@ -225,6 +226,7 @@ public class SportActivity extends BaseTitleActivity implements LocationSource, 
             case R.id.right:
                 saveData();
                 break;
+            default:
         }
 
     }

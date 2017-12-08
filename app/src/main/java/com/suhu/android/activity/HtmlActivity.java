@@ -28,7 +28,7 @@ public class HtmlActivity extends BaseSlidingActivity{
     @BindView(R.id.webView)
     WebView webView;
 
-    private String URL = "file:///android_asset/test.html";
+    private static final String URL = "file:///android_asset/test.html";
 
     @Override
     public int showContView() {

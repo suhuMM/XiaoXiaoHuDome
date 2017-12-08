@@ -52,7 +52,7 @@ public class RegistrationActivity extends BaseTitleActivity {
     @BindView(R.id.registration)
     Button registration;
 
-    private String phoneS,codeS,Password1,password2;
+    private String phoneS,codeS,password1,password2;
 
     private CountDownTimer timer = new CountDownTimer(60000,1000){
         @Override
@@ -78,7 +78,7 @@ public class RegistrationActivity extends BaseTitleActivity {
                         @Override
                         public void run() {
                             Toast.makeText(RegistrationActivity.this,"验证成功",Toast.LENGTH_SHORT).show();
-                            SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(Password1));
+                            SharedPreferencesUtils.createSharePreferences(RegistrationActivity.this, Config.LOGIN_MESSAGE,phoneS, MD5Tools.MD5(password1));
                             startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
                             finish();
                         }
@@ -102,7 +102,7 @@ public class RegistrationActivity extends BaseTitleActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (des.equals("invalid validation code")){
+                                if ("invalid validation code".equals(des)){
                                     Toast.makeText(RegistrationActivity.this,"验证码无效",Toast.LENGTH_SHORT).show();
                                 }else {
                                     Toast.makeText(RegistrationActivity.this,"手机号已注册",Toast.LENGTH_SHORT).show();
@@ -143,6 +143,7 @@ public class RegistrationActivity extends BaseTitleActivity {
         timer.cancel();
     }
 
+    @Override
     @OnClick({R.id.request, R.id.registration})
     public void onViewClicked(View view) {
         super.onViewClicked(view);
@@ -154,13 +155,14 @@ public class RegistrationActivity extends BaseTitleActivity {
             case R.id.registration:
                 registration();
                 break;
+            default:
         }
     }
 
     private void registration() {
         phoneS = phone.getText().toString();
         codeS = code.getText().toString();
-        Password1 = passwordOne.getText().toString();
+        password1 = passwordOne.getText().toString();
         password2 = passwordAgain.getText().toString();
 
         if (TextUtils.isEmpty(phoneS)){
@@ -175,7 +177,7 @@ public class RegistrationActivity extends BaseTitleActivity {
             Toast.makeText(this,"验证码为空",Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(Password1)){
+        if (TextUtils.isEmpty(password1)){
             Toast.makeText(this,"密码为空",Toast.LENGTH_SHORT).show();
             return;
         }
@@ -183,7 +185,7 @@ public class RegistrationActivity extends BaseTitleActivity {
             Toast.makeText(this,"再次输入密码",Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!Password1.equals(password2)){
+        if (!password1.equals(password2)){
             Toast.makeText(this,"两次密码不一致",Toast.LENGTH_SHORT).show();
             return;
         }

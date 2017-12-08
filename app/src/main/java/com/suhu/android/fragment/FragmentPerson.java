@@ -138,6 +138,7 @@ public class FragmentPerson extends Fragment {
             case R.id.logout:
                 logout();
                 break;
+            default:
         }
     }
 
@@ -145,22 +146,22 @@ public class FragmentPerson extends Fragment {
         //取消授权并且退出
         UMShareAPI.get(getActivity()).deleteOauth(getActivity(), SHARE_MEDIA.QQ, new UMAuthListener() {
             @Override
-            public void onStart(SHARE_MEDIA share_media) {
+            public void onStart(SHARE_MEDIA shareMedia) {
 
             }
 
             @Override
-            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            public void onComplete(SHARE_MEDIA shareMedia, int i, Map<String, String> map) {
                 getActivity().finish();
             }
 
             @Override
-            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+            public void onError(SHARE_MEDIA shareMedia, int i, Throwable throwable) {
 
             }
 
             @Override
-            public void onCancel(SHARE_MEDIA share_media, int i) {
+            public void onCancel(SHARE_MEDIA shareMedia, int i) {
 
             }
         });

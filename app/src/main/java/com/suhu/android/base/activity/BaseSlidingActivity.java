@@ -23,7 +23,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * Created by Administrator on 2017/9/2 0002.
+ * @author suhu Administrator
  * https://github.com/YoKeyword/SwipeBackFragment
  */
 
@@ -54,8 +54,20 @@ public abstract class BaseSlidingActivity extends AppCompatActivity {
 
 
 
+    /**
+     *@method 展示数据
+     *
+    */
     public abstract int showContView();
+    /**
+     *@method 设置ActionBar内容
+     *
+    */
     public abstract void setActionBar();
+    /**
+     *@method 设置view
+     *
+    */
     public abstract void setCreateView(Bundle savedInstanceState);
 
 
@@ -73,6 +85,8 @@ public abstract class BaseSlidingActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.left:
                 finish();
+                break;
+            default:
                 break;
         }
     }

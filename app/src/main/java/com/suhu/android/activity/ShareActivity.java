@@ -109,7 +109,7 @@ public class ShareActivity extends BaseTitleActivity implements UMShareListener{
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         permissionsL.clear();
         if (requestCode == REQUEST_PERMISSION){
             UMImage image = new UMImage(ShareActivity.this,"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504762622136&di=e238d3b4a8ea8f8f40c36160a00f1cfe&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150511%2F139-150511112R7.jpg");

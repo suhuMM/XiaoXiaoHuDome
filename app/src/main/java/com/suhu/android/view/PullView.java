@@ -27,7 +27,7 @@ public class PullView extends View {
     //圆的画笔
     private Paint mCirClePaint;
     //圆的半径
-    private float MCirCleRadius = 50;
+    private float mCirCleRadius = 50;
 
     //可拖动的高度
     private int mDragHeight = 300;
@@ -94,7 +94,7 @@ public class PullView extends View {
 
         int measureWidth;
         int measureHeight;
-        int iWidth = (int) (2 * MCirCleRadius + getPaddingLeft() + getPaddingRight());
+        int iWidth = (int) (2 * mCirCleRadius + getPaddingLeft() + getPaddingRight());
         int iHeight = (int) ((mDragHeight * mProgress + 0.5f) + getPaddingTop() + getPaddingBottom());
 
 
@@ -130,7 +130,7 @@ public class PullView extends View {
         //画贝塞尔曲线
         canvas.drawPath(mPath, mPathPaint);
         //画圆
-        canvas.drawCircle(mCirClePointX, mCirClePointY, MCirCleRadius, mCirClePaint);
+        canvas.drawCircle(mCirClePointX, mCirClePointY, mCirCleRadius, mCirClePaint);
         Drawable drawable = mContent;
         if(drawable!=null){
             //剪切举行区域
@@ -170,7 +170,7 @@ public class PullView extends View {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.PullView);
         int color = array.getColor(R.styleable.PullView_pColor,0xff000000);
 
-        MCirCleRadius = array.getDimension(R.styleable.PullView_pRadius,50);
+        mCirCleRadius = array.getDimension(R.styleable.PullView_pRadius,50);
 
         mDragHeight = array.getDimensionPixelOffset(R.styleable.PullView_pDragHeight,mDragHeight);
         mTangentAngle =array.getInteger(R.styleable.PullView_pTangentAngle,100);
@@ -203,7 +203,7 @@ public class PullView extends View {
         p.setColor(color);
         mPathPaint = p;
         //切角路劲插值器
-        mTangentInterpolator = PathInterpolatorCompat.create((MCirCleRadius*2.0f)/mDragHeight,90.0f/mTangentAngle);
+        mTangentInterpolator = PathInterpolatorCompat.create((mCirCleRadius*2.0f)/mDragHeight,90.0f/mTangentAngle);
 
     }
 
@@ -226,7 +226,7 @@ public class PullView extends View {
         //圆的中心点X坐标
         final float cPointX = w / 2;
         //圆的半径
-        final float cRadius = MCirCleRadius;
+        final float cRadius = mCirCleRadius;
         //圆的中心点Y坐标
         final float cPointY = h - cRadius;
         //控制点借宿Y的值

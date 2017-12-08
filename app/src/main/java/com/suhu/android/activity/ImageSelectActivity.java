@@ -90,6 +90,7 @@ public class ImageSelectActivity extends BaseSlidingActivity {
                             // 预览音频
                             PictureSelector.create(ImageSelectActivity.this).externalPictureAudio(media.getPath());
                             break;
+                        default:
                     }
                 }
             }
@@ -109,6 +110,7 @@ public class ImageSelectActivity extends BaseSlidingActivity {
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
                     break;
+                default:
             }
         }
 
@@ -150,6 +152,7 @@ public class ImageSelectActivity extends BaseSlidingActivity {
 
 
 
+    @Override
     @OnClick(R.id.submit)
     public void onViewClicked(View view) {
         super.onViewClicked(view);

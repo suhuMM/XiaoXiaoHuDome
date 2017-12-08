@@ -35,7 +35,19 @@ public class ApiRequestFactory {
 
 
     public interface HttpCallBackListener {
+        /**
+         *@param response
+         *@param url
+         *@param id
+         *
+        */
         void onSuccess(String response, String url, int id);
+        /**
+         *@param call
+         *@param e
+         *@param id
+         *
+         */
         void failure(Call call, Exception e, int id);
     }
 
@@ -465,16 +477,20 @@ public class ApiRequestFactory {
         }
         /* 获取文件的后缀名*/
         String end = fName.substring(dotIndex, fName.length()).toLowerCase();
-        if (end == "") return type;
+        if (end == "") {
+            return type;
+        }
         //在MIME和文件类型的匹配表中找到对应的MIME类型。
-        for (int i = 0; i < MIME_MapTable.length; i++) { //MIME_MapTable??在这里你一定有疑问，这个MIME_MapTable是什么？
-            if (end.equals(MIME_MapTable[i][0]))
-                type = MIME_MapTable[i][1];
+        for (int i = 0; i < MIME_MAP_TABLE.length; i++) {
+            //MIME_MapTable??在这里你一定有疑问，这个MIME_MapTable是什么？
+            if (end.equals(MIME_MAP_TABLE[i][0])) {
+                type = MIME_MAP_TABLE[i][1];
+            }
         }
         return type;
     }
 
-    private static final String[][] MIME_MapTable = {
+    private static final String[][] MIME_MAP_TABLE = {
             //{后缀名，MIME类型}
             {".3gp", "video/3gpp"},
             {".apk", "application/vnd.android.package-archive"},

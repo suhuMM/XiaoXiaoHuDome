@@ -35,17 +35,22 @@ public class TableManager {
     public int insert(String tableName, Object object) {
 
         Class clazz = object.getClass();
-        Field[] fields = clazz.getDeclaredFields();//获取该类所有的属性
+        //获取该类所有的属性
+        Field[] fields = clazz.getDeclaredFields();
         ContentValues value = new ContentValues();
 
         for (Field field : fields) {
             try {
-                if (field.getName().equals("$change") || field.getName().equals("serialVersionUID"))
+                if ("$change".equals(field.getName()) || "serialVersionUID".equals(field.getName())) {
                     continue;
-                field.setAccessible(true); //取消对age属性的修饰符的检查访问，以便为属性赋值
-                String content = (String) field.get(object);//获取该属性的内容
+                }
+                //取消对age属性的修饰符的检查访问，以便为属性赋值
+                field.setAccessible(true);
+                //获取该属性的内容
+                String content = (String) field.get(object);
                 value.put(field.getName(), content);
-                field.setAccessible(false);//恢复对age属性的修饰符的检查访问
+                //恢复对age属性的修饰符的检查访问
+                field.setAccessible(false);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -87,15 +92,20 @@ public class TableManager {
     public void update(String tableName, String columnName, String columnValue, Object object) {
         try {
             Class clazz = object.getClass();
-            Field[] fields = clazz.getDeclaredFields();//获取该类所有的属性
+            //获取该类所有的属性
+            Field[] fields = clazz.getDeclaredFields();
             ContentValues value = new ContentValues();
             for (Field field : fields) {
-                if (field.getName().equals("$change") || field.getName().equals("serialVersionUID"))
+                if ("$change".equals(field.getName()) || "serialVersionUID".equals(field.getName())) {
                     continue;
-                field.setAccessible(true); //取消对age属性的修饰符的检查访问，以便为属性赋值
-                String content = (String) field.get(object);//获取该属性的内容
+                }
+                //取消对age属性的修饰符的检查访问，以便为属性赋值
+                field.setAccessible(true);
+                //获取该属性的内容
+                String content = (String) field.get(object);
                 value.put(field.getName(), content);
-                field.setAccessible(false);//恢复对age属性的修饰符的检查访问
+                //恢复对age属性的修饰符的检查访问
+                field.setAccessible(false);
             }
             db.update(tableName, value, columnName + "=?", new String[]{columnValue});
         } catch (IllegalAccessException e1) {
@@ -119,13 +129,20 @@ public class TableManager {
             while (!cursor.isAfterLast()) {
                 T t = entityType.newInstance();
                 for (int i = 0; i < cursor.getColumnCount(); i++) {
-                    String content = cursor.getString(i);//获得获取的数据记录第i条字段的内容
-                    String columnName = cursor.getColumnName(i);// 获取数据记录第i条字段名的
-                    if (columnName.equals("_id")) continue;
-                    Field field = entityType.getDeclaredField(columnName);//获取该字段名的Field对象。
-                    field.setAccessible(true);//取消对age属性的修饰符的检查访问，以便为属性赋值
+                    //获得获取的数据记录第i条字段的内容
+                    String content = cursor.getString(i);
+                    // 获取数据记录第i条字段名的
+                    String columnName = cursor.getColumnName(i);
+                    if ("_id".equals(columnName)) {
+                        continue;
+                    }
+                    //获取该字段名的Field对象。
+                    Field field = entityType.getDeclaredField(columnName);
+                    //取消对age属性的修饰符的检查访问，以便为属性赋值
+                    field.setAccessible(true);
                     field.set(t, content);
-                    field.setAccessible(false);//恢复对age属性的修饰符的检查访问
+                    //恢复对age属性的修饰符的检查访问
+                    field.setAccessible(false);
                 }
                 list.add(t);
                 cursor.moveToNext();
@@ -161,13 +178,20 @@ public class TableManager {
             while (!cursor.isAfterLast()) {
                 T t = entityType.newInstance();
                 for (int i = 0; i < cursor.getColumnCount(); i++) {
-                    String content = cursor.getString(i);//获得获取的数据记录第i条字段的内容
-                    String columnName = cursor.getColumnName(i);// 获取数据记录第i条字段名的
-                    if (columnName.equals("_id")) continue;
-                    Field field = entityType.getDeclaredField(columnName);//获取该字段名的Field对象。
-                    field.setAccessible(true);//取消对age属性的修饰符的检查访问，以便为属性赋值
+                    //获得获取的数据记录第i条字段的内容
+                    String content = cursor.getString(i);
+                    // 获取数据记录第i条字段名的
+                    String columnName = cursor.getColumnName(i);
+                    if ("_id".equals(columnName)) {
+                        continue;
+                    }
+                    //获取该字段名的Field对象。
+                    Field field = entityType.getDeclaredField(columnName);
+                    //取消对age属性的修饰符的检查访问，以便为属性赋值
+                    field.setAccessible(true);
                     field.set(t, content);
-                    field.setAccessible(false);//恢复对age属性的修饰符的检查访问
+                    //恢复对age属性的修饰符的检查访问
+                    field.setAccessible(false);
                 }
                 list.add(t);
                 cursor.moveToNext();

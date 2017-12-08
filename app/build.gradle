@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.suhu.android"
         minSdkVersion 21
@@ -90,7 +88,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':PushSDK')
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     //融云即时通信
@@ -105,11 +102,11 @@ dependencies {
     //工具类
     compile 'com.blankj:utilcode:1.6.3'
     //6.0权限
-    apt 'com.zhy:mpermission-compiler:1.0.0'
+    annotationProcessor 'com.zhy:mpermission-compiler:1.0.0'
     compile 'com.zhy:mpermission-api:1.0.0'
     //注解
     compile 'com.jakewharton:butterknife:8.8.1'
-    compile 'com.jakewharton:butterknife-compiler:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //背景模糊dialog
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
     //apk更新
@@ -131,7 +128,10 @@ dependencies {
     //loading
     compile 'com.github.d-max:spots-dialog:0.7@aar'
     //design
-    compile 'com.android.support:design:26.0.0-alpha1'
+    implementation 'com.android.support:design:27.0.2'
     //px布局
     compile 'com.zhy:autolayout:1.4.5'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+
+    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
 }

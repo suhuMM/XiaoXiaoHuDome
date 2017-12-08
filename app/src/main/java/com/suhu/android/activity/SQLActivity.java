@@ -52,6 +52,7 @@ public class SQLActivity extends BaseSlidingActivity {
     }
 
 
+    @Override
     @OnClick({R.id.insert, R.id.delete, R.id.update, R.id.query,R.id.query_if})
     public void onViewClicked(View view) {
         super.onViewClicked(view);
@@ -73,6 +74,7 @@ public class SQLActivity extends BaseSlidingActivity {
                 case R.id.query_if:
                     query();
                     break;
+                default:
             }
         }else {
             Toast.makeText(this, "授权失败，不允许操作数据库", Toast.LENGTH_SHORT).show();

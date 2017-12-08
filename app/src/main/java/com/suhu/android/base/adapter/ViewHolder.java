@@ -22,7 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.yh.yhproject.R;
+import com.suhu.android.R;
+
 
 /**
  *@author suhu

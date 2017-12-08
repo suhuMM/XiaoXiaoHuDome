@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 /**
  * Created by wnw on 16-5-26.
  */
-public abstract class EndLessOnScrollListener extends RecyclerView.OnScrollListener {
+public abstract class BaseEndLessOnScrollListener extends RecyclerView.OnScrollListener {
 
     //声明一个LinearLayoutManager
     private LinearLayoutManager mLinearLayoutManager;

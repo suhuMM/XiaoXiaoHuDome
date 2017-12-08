@@ -10,20 +10,21 @@ import java.util.List;
  *@time 2017/4/11 11:00
  *
 */
-public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T> {
+public abstract class BaseCommonAdapter<T> extends MultiItemTypeAdapter<T> {
 
     protected Context mContext;
     protected int mLayoutId;
     protected List<T> mDatas;
     protected LayoutInflater mInflater;
 
+    @Override
     public void setDatas(List<T> mDatas) {
         super.setDatas(mDatas);
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }
 
-    public CommonAdapter(final Context context, final int layoutId) {
+    public BaseCommonAdapter(final Context context, final int layoutId) {
         super(context);
         mContext = context;
         mInflater = LayoutInflater.from(context);
@@ -42,7 +43,7 @@ public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T> {
 
             @Override
             public void convert(ViewHolder holder, T t, int position) {
-                CommonAdapter.this.convert(holder, t, position);
+                BaseCommonAdapter.this.convert(holder, t, position);
             }
         });
     }

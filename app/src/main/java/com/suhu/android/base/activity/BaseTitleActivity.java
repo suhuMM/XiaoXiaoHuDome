@@ -62,6 +62,8 @@ public abstract class BaseTitleActivity extends AppCompatActivity {
             case R.id.left:
                 finish();
                 break;
+            default:
+                break;
         }
     }
 

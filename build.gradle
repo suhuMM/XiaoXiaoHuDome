@@ -3,13 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        //注解
-        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
-        //权限
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        classpath 'com.android.tools.build:gradle:3.0.0'
     }
 }
 

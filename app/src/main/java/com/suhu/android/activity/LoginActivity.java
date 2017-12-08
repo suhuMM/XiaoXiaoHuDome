@@ -76,8 +76,11 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
                     case R.id.wxcircle:
                         Toast.makeText(LoginActivity.this,"朋友圈",Toast.LENGTH_SHORT).show();
                         break;
+                    default:
                 }
-                if (dialog !=null) dialog.dismiss();
+                if (dialog !=null) {
+                    dialog.dismiss();
+                }
             }
         });
     }
@@ -88,6 +91,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
         UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
     }
 
+    @Override
     @OnClick({R.id.login,R.id.right,R.id.qq})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -100,6 +104,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
             case R.id.qq:
                 showDialog();
                 break;
+            default:
         }
     }
 
@@ -132,27 +137,28 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
     /**--------------------------------第三方登录接口---------------------------------------------**/
 
     @Override
-    public void onStart(SHARE_MEDIA share_media) {
+    public void onStart(SHARE_MEDIA shareMedia) {
 
     }
 
     @Override
-    public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-        switch (share_media){
+    public void onComplete(SHARE_MEDIA shareMedia, int i, Map<String, String> map) {
+        switch (shareMedia){
             case QQ:
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
                 break;
+            default:
         }
     }
 
     @Override
-    public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+    public void onError(SHARE_MEDIA shareMedia, int i, Throwable throwable) {
 
     }
 
     @Override
-    public void onCancel(SHARE_MEDIA share_media, int i) {
+    public void onCancel(SHARE_MEDIA shareMedia, int i) {
 
     }
 

@@ -76,6 +76,7 @@ public class MainActivity extends BaseNoTitleActivity {
                 case PictureConfig.CHOOSE_REQUEST:
                     EventBus.getDefault().post(data);
                     break;
+                default:
             }
         }
     }

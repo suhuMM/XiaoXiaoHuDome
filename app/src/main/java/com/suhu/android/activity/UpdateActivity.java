@@ -48,6 +48,7 @@ public class UpdateActivity extends BaseSlidingActivity {
     }
 
 
+    @Override
     @OnClick({R.id.button_1, R.id.button_2, R.id.button_3, R.id.button_4, R.id.button_5, R.id.button_6})
     public void onViewClicked(View view) {
         super.onViewClicked(view);
@@ -71,6 +72,7 @@ public class UpdateActivity extends BaseSlidingActivity {
                 UpdateUtil.clean(this);
                 Toast.makeText(this, "cleared", Toast.LENGTH_LONG).show();
                 break;
+            default:
         }
     }
 

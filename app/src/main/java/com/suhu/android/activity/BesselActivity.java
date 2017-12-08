@@ -61,6 +61,7 @@ public class BesselActivity extends BaseTitleActivity{
 
                         pullView.release();
                         break;
+                    default:
                 }
                 return false;
             }
