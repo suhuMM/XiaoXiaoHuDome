@@ -25,7 +25,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.umeng.socialize.bean.SHARE_MEDIA.QQ;
 
 public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
 
@@ -109,7 +108,7 @@ public class LoginActivity extends BaseTitleActivity implements UMAuthListener{
     }
 
     private void loginQQ() {
-        UMShareAPI.get(this).getPlatformInfo(this, QQ, this);
+        UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, this);
     }
 
 

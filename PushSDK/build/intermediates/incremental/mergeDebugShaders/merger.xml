@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\AS\kotlin\XiaoXiaoHuDome\PushSDK\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\AS\kotlin\XiaoXiaoHuDome\PushSDK\build-types\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/suhu/Documents/android/AS/dome/XiaoXiaoHuDome/PushSDK/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/suhu/Documents/android/AS/dome/XiaoXiaoHuDome/PushSDK/build-types/debug/shaders"/></dataSet></merger>

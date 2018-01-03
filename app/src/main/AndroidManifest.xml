@@ -12,16 +12,13 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".application.SoftwareApp"
@@ -61,61 +58,61 @@
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
             android:value="7b21cb8429f5fb676dd74d01114fd1b1" />
-        <!--友盟分享-->
-        <!--新浪-->
+        <!-- 友盟分享 -->
+        <!-- 新浪 -->
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
-            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
 
-        <!--支付宝-->
+        <!-- 支付宝 -->
         <activity
-            android:name="com.suhu.android.apshare.ShareEntryActivity"
+            android:name=".apshare.ShareEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--qq精简版-->
+        <!-- qq精简版 -->
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <!--微信-->
-        <activity android:name=".wxapi.WXEntryActivity"
+        <!-- 微信 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <!--图片选择-->
+        <!-- 图片选择 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -126,25 +123,25 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!--高德地图-->
+        <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="1f3e03af2aca84d80ed412c771208031"/>
-        <service android:name="com.amap.api.location.APSService"></service>
+            android:value="1f3e03af2aca84d80ed412c771208031" />
 
-        <!--融云及时通讯-->
-        <!--<meta-data-->
-            <!--android:name="RONG_CLOUD_APP_KEY"-->
-            <!--android:value="3argexb630q4e"/>-->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <!-- 融云及时通讯 -->
+        <!-- <meta-data -->
+        <!-- android:name="RONG_CLOUD_APP_KEY" -->
+        <!-- android:value="3argexb630q4e"/> -->
         <provider
-            android:name="com.suhu.android.provider.IMProvider"
+            android:name=".provider.IMProvider"
             android:authorities="${applicationId}.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/rc_file_path"
-                />
+                android:resource="@xml/rc_file_path" />
         </provider>
 
         <!-- 项目原生页面 -->
@@ -156,26 +153,26 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RegistrationActivity" />
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.ShareActivity"/>
-        <activity android:name=".activity.UpdateActivity"/>
-        <activity android:name=".activity.ImageSelectActivity"/>
-        <activity android:name=".activity.SportActivity"/>
-        <activity android:name=".activity.HtmlActivity"/>
-        <activity android:name=".activity.SQLActivity"/>
-        <activity android:name=".activity.could.IMActivity"/>
-        <activity android:name=".activity.BluetoothActivity"/>
-        <activity android:name=".activity.BesselActivity"/>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.ShareActivity" />
+        <activity android:name=".activity.UpdateActivity" />
+        <activity android:name=".activity.ImageSelectActivity" />
+        <activity android:name=".activity.SportActivity" />
+        <activity android:name=".activity.HtmlActivity" />
+        <activity android:name=".activity.SQLActivity" />
+        <activity android:name=".activity.could.IMActivity" />
+        <activity android:name=".activity.BluetoothActivity" />
+        <activity android:name=".activity.BesselActivity" />
 
-        <!--会话界面-->
+        <!-- 会话界面 -->
         <activity
             android:name=".activity.could.ConversationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
@@ -183,24 +180,24 @@
                     android:pathPrefix="/conversation/"
                     android:scheme="rong" />
             </intent-filter>
-
         </activity>
 
-        <!--聚合会话列表-->
+        <!-- 聚合会话列表 -->
         <activity
             android:name=".activity.could.SubConversationListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data
                     android:host="com.suhu.android"
                     android:pathPrefix="/subconversationlist"
                     android:scheme="rong" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

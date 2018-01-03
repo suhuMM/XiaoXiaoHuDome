@@ -11,8 +11,8 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk{
-            abiFilters "armeabi-v7a","x86"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
         }
     }
     dexOptions {
@@ -29,8 +29,8 @@ android {
         exclude 'META-INF/notice.txt'
     }
 
-    sourceSets{
-        main{
+    sourceSets {
+        main {
             jni.srcDirs = []
             jniLibs.srcDirs = ['src/main/jniLibs']
         }
@@ -42,7 +42,7 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug{
+        debug {
             minifyEnabled false
             signingConfig signingConfigs.debug
             proguardFiles 'proguard-rules.pro'
@@ -58,7 +58,7 @@ android {
         }
     }
 
-    lintOptions{
+    lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
