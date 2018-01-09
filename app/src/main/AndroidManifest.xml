@@ -65,7 +65,7 @@
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
@@ -163,6 +163,7 @@
         <activity android:name=".activity.could.IMActivity" />
         <activity android:name=".activity.BluetoothActivity" />
         <activity android:name=".activity.BesselActivity" />
+        <activity android:name=".activity.FaceActivity"/>
 
         <!-- 会话界面 -->
         <activity
@@ -198,6 +199,7 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -132,6 +132,6 @@ dependencies {
     //px布局
     compile 'com.zhy:autolayout:1.4.5'
     implementation 'com.android.support:appcompat-v7:27.0.2'
-
     compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+    implementation files('libs/FaceppSDK.jar')
 }

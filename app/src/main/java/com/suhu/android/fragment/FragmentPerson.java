@@ -24,6 +24,7 @@ import com.luck.picture.lib.permissions.RxPermissions;
 import com.suhu.android.R;
 import com.suhu.android.activity.BesselActivity;
 import com.suhu.android.activity.BluetoothActivity;
+import com.suhu.android.activity.FaceActivity;
 import com.suhu.android.activity.HtmlActivity;
 import com.suhu.android.activity.ImageSelectActivity;
 import com.suhu.android.activity.SQLActivity;
@@ -99,7 +100,7 @@ public class FragmentPerson extends Fragment {
     }
 
 
-    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql,R.id.bluetooth,R.id.bessel})
+    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql,R.id.bluetooth,R.id.bessel,R.id.face})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_select:
@@ -130,6 +131,10 @@ public class FragmentPerson extends Fragment {
                 break;
             case R.id.update:
                 startActivity(new Intent(getActivity(), UpdateActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
+                break;
+            case R.id.face:
+                startActivity(new Intent(getActivity(), FaceActivity.class));
                 getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.photo:

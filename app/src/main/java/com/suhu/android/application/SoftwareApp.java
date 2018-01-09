@@ -35,8 +35,18 @@ public class SoftwareApp extends Application implements IUmengRegisterCallback{
         PlatformConfig.setSinaWeibo("3561365327", "2bca4073acc3a5f602e6e699079679cd","http://sns.whalecloud.com/");
     }
 
+    /**
+     * Face++key
+     */
+    public static final String API_KEY ="_03im_52rToIuvDfmDO0g5mb9ObdJyGN";
+    public static final String API_SECRET ="UKxI4ALYgVOI0FIBoTl6iVTTl_LEyf5E";
+
+
+
     private ActivityHelper mActivityHelper;
     private static SoftwareApp softwareApp;
+
+
 
     @Override
     public void onCreate() {
