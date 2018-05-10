@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -16,6 +17,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -267,6 +269,70 @@ public class ApiRequestFactory {
                     }
                 });
     }
+
+
+    /**
+     *
+     * 表单上传文件
+     *
+     * @param context
+     * @param url
+     * @param submitFiles
+     * @param params
+     * @param httpCallBackListener
+     * @param isShowDialog
+     */
+
+    public static void postMixture(final Context context, final String url, List<SubmitFile> submitFiles, Map<String,String> params, final HttpCallBackListener httpCallBackListener, boolean isShowDialog){
+
+        init(context);
+        if (isShowDialog) {
+            if (loadingDialog == null) {
+                loadingDialog = new SpotsDialog(context,"正在加载数据");
+            }
+            loadingDialog.dismiss();
+            loadingDialog.show();
+        }
+        PostFormBuilder builder = OkHttpUtils.post();
+        if (submitFiles!=null){
+            for (SubmitFile submitFile : submitFiles) {
+                builder.addFile(submitFile.getName(),submitFile.getFileName(),submitFile.getFile());
+            }
+        }
+        builder.url(ApiUrl.FACE+url)
+                .params(params)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        if (loadingDialog != null) {
+                            loadingDialog.dismiss();
+                            loadingDialog = null;
+                        }
+                        if (httpCallBackListener !=null) {
+                            httpCallBackListener.failure(call,e,id);
+                        }
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (loadingDialog != null) {
+                            loadingDialog.dismiss();
+                            loadingDialog = null;
+                        }
+                        if (response.contains("用户认证系统")){
+                            ToastUtils.disPlayShort(context, "网络连接已断开，请检查网络连接");
+                            return;
+                        }
+                        if (httpCallBackListener !=null){
+                            httpCallBackListener.onSuccess(response,url,id);
+                        }
+                    }
+                });
+
+    }
+
+
 
     /**
      *@method uploadFile 上传文件

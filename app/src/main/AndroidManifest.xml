@@ -163,7 +163,7 @@
         <activity android:name=".activity.could.IMActivity" />
         <activity android:name=".activity.BluetoothActivity" />
         <activity android:name=".activity.BesselActivity" />
-        <activity android:name=".activity.FaceActivity"/>
+        <activity android:name=".activity.FaceActivity" />
 
         <!-- 会话界面 -->
         <activity
@@ -199,7 +199,7 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".activity.NdkActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,10 @@ import android.graphics.Bitmap;
 import com.suhu.android.application.SoftwareApp;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,8 +43,14 @@ public class ApiRequestMethods {
         Map<String,String> map = new HashMap<>();
         map.put("api_key", SoftwareApp.API_KEY);
         map.put("api_secret",SoftwareApp.API_SECRET);
-        map.put("image_file",fileUrl);
-        ApiRequestFactory.post(context,ApiUrl.DETECT,map,callBackListener,true);
+
+        SubmitFile submitFile = new SubmitFile();
+        submitFile.setFileName("face");
+        submitFile.setName("image_file");
+        submitFile.setFile(new File(fileUrl));
+        List<SubmitFile> list = new ArrayList<>();
+        list.add(submitFile);
+        ApiRequestFactory.postMixture(context,ApiUrl.DETECT,list,map,callBackListener,true);
     }
 
 

@@ -27,6 +27,7 @@ import com.suhu.android.activity.BluetoothActivity;
 import com.suhu.android.activity.FaceActivity;
 import com.suhu.android.activity.HtmlActivity;
 import com.suhu.android.activity.ImageSelectActivity;
+import com.suhu.android.activity.NdkActivity;
 import com.suhu.android.activity.SQLActivity;
 import com.suhu.android.activity.SportActivity;
 import com.suhu.android.activity.UpdateActivity;
@@ -100,7 +101,7 @@ public class FragmentPerson extends Fragment {
     }
 
 
-    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql,R.id.bluetooth,R.id.bessel,R.id.face})
+    @OnClick({R.id.image_select,R.id.im_cloud,R.id.sport,R.id.html, R.id.update, R.id.photo, R.id.logout,R.id.sql,R.id.bluetooth,R.id.bessel,R.id.face,R.id.ndk})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image_select:
@@ -135,6 +136,10 @@ public class FragmentPerson extends Fragment {
                 break;
             case R.id.face:
                 startActivity(new Intent(getActivity(), FaceActivity.class));
+                getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
+                break;
+            case R.id.ndk:
+                startActivity(new Intent(getActivity(), NdkActivity.class));
                 getActivity().overridePendingTransition(R.anim.anim_slide_in, R.anim.anim_none);
                 break;
             case R.id.photo:

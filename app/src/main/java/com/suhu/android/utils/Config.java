@@ -13,8 +13,7 @@ public class Config {
     public static final String SD_CARD = Environment.getExternalStorageDirectory().getAbsolutePath();
     public static final String PHOTO = "/suhu/photo";
     public static final String PHOTO_URL = SD_CARD+PHOTO+"/head.png";
-
-
+    public static final String FACE_URL = SD_CARD+PHOTO+"/face.jpg";
 
 
 

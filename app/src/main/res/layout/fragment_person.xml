@@ -88,6 +88,13 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:text="人脸识别" />
+        <Button
+            android:id="@+id/ndk"
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:text="JNI开发" />
 
         <Button
             android:id="@+id/update"

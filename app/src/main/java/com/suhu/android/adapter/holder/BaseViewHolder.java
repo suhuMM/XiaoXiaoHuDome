@@ -13,7 +13,7 @@ import com.suhu.android.listener.OnMixClickListener;
  * @description
  */
 
-public abstract class BaseViewHolder <T> extends RecyclerView.ViewHolder{
+public abstract class   BaseViewHolder <T> extends RecyclerView.ViewHolder{
 
     private SparseArray<View> views;
     private View itemView;
